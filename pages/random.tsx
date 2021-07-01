@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import { GiphyFetch } from '@giphy/js-fetch-api'
 
-export default function Random() {
+export default function Random({gifUrl}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +14,7 @@ export default function Random() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Ramdom Meme Forecast
+          Random Meme Forecast
         </h1>
 
         <p className={styles.description}>
@@ -21,7 +22,9 @@ export default function Random() {
         </p>
 
         <div className={styles.grid}>
-          <div style={{width:"480px"}}><iframe allow="fullscreen" frameBorder="0" height="270" src="https://giphy.com/embed/2Um7AguA3qnKSafglE" width="480"></iframe></div>
+        {gifUrl && (
+            <img src={gifUrl} />
+          )}
         </div>
       </main>
 
@@ -38,3 +41,25 @@ export default function Random() {
     </div>
   )
 }
+
+export async function getStaticProps({ preview = false }) {
+
+  // get Gif and pass to the page props
+  const giphyApiKey = process.env.GIPHY_KEY || "" 
+  let gifUrl = ""
+  if(giphyApiKey != ""){
+    const gf = new GiphyFetch(giphyApiKey)
+    const { data: gifs } = await gf.search('weather', { sort: 'relevant', lang: 'es', limit: 1, type: 'gifs' })
+    gifUrl = gifs[0].images.original.url
+  } else {
+    gifUrl = "https://media1.giphy.com/media/H7wajFPnZGdRWaQeu0/giphy.gif?cid=1995ed6coh4r816dv8hr3gw8f9p3clzvdsctlffxsvedomvr&rid=giphy.gif&ct=g"
+  }
+  
+  console.log(gifUrl)
+  
+  return {
+    props: { gifUrl},
+  }
+}
+
+  
