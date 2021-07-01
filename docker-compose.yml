@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+
+  weatherdrop:
+    container_name: weatherdrop
+    image: node:alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    
+    restart: always
+    volumes:
+        - .:/app
+    ports:
+        - 3000:3000
+
