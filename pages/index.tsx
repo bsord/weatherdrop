@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -21,15 +21,18 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="/location" className={styles.card}>
-            <h2>My Forecast &rarr;</h2>
-            <p>Get the meme forecast based on your location</p>
-          </a>
-
-          <a href="/random" className={styles.card}>
-            <h2>Random City &rarr;</h2>
-            <p>Get the meme forecast of the day from a random major city</p>
-          </a>
+          <Link href="/location">
+            <a href="" className={styles.card}>
+              <h2>My Forecast &rarr;</h2>
+              <p>Get the meme forecast based on your location</p>
+            </a>
+          </Link>
+          <Link href="/random">
+            <a className={styles.card}>
+              <h2>Random City &rarr;</h2>
+              <p>Get the meme forecast of the day from a random major city</p>
+            </a>
+          </Link>
 
           
         </div>

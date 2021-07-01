@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 export default function Random() {
@@ -16,7 +17,7 @@ export default function Random() {
         </h1>
 
         <p className={styles.description}>
-          Click <a href="/random" >here</a> to get a new random forecast
+          Click  <Link href="/random"><a>here</a></Link> to get a new random forecast
         </p>
 
         <div className={styles.grid}>
