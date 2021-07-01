@@ -39,6 +39,12 @@ spec:
             httpGet:
               path: /
               port: http
+          env:          
+            - name: "GIPHY_KEY"
+              valueFrom:
+                secretKeyRef: 
+                  name: {{ .Values.secretName }}
+                  key: giphyKey
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

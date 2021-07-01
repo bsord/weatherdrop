@@ -9,7 +9,9 @@ services:
     
     restart: always
     volumes:
-        - .:/app
+      - .:/app
+    environment:
+      - GIPHY_KEY=${GIPHY_KEY}
     ports:
-        - 3000:3000
+      - 3000:3000
 
