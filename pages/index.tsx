@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -33,8 +34,6 @@ export default function Home() {
               <p>Get the meme forecast of the day from a random major city</p>
             </a>
           </Link>
-
-          
         </div>
       </main>
 

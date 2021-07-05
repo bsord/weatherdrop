@@ -1,9 +1,29 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import React, { useState } from 'react';
 
 export default function Location() {
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+  const [status, setStatus] = useState(null);
+
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setStatus('Geolocation is not supported by your browser');
+    } else {
+      setStatus('Locating...');
+      navigator.geolocation.getCurrentPosition((position) => {
+        setStatus(null);
+        setLat(position.coords.latitude);
+        setLng(position.coords.longitude);
+      }, () => {
+        setStatus('Unable to retrieve your location');
+      });
+    }
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onLoad={getLocation}>
       <Head>
         <title>WeatherDrop - Location</title>
         <meta name="description" content="a Random meme forecast" />
@@ -14,6 +34,13 @@ export default function Location() {
         <h1 className={styles.title}>
           Your meme forecast
         </h1>
+
+        <div className="App">
+          <h1>Coordinates</h1>
+          <p>{status}</p>
+          {lat && <p>Latitude: {lat}</p>}
+          {lng && <p>Longitude: {lng}</p>}
+        </div>
 
         <p className={styles.description}>
           This is the meme forecast for your location
