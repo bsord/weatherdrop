@@ -7,6 +7,16 @@ export default function Location() {
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
   const [mapUrl, setMapUrl] = useState(null);
+  const [forecast, setForecast] = useState(null);
+
+  let apiKey;
+  if(process.env.OPEN_WEATHER_API_KEY !== undefined || process.env.OPEN_WEATHER_API_KEY !== "undefined"){
+    apiKey = process.env.OPEN_WEATHER_API_KEY;
+    console.log("Setting API Key: " + apiKey)
+  }else{
+    new Error("OpenWeather API Key not found!")
+  }
+
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -14,6 +24,7 @@ export default function Location() {
     } else {
       setStatus('Locating...');
       navigator.geolocation.getCurrentPosition((position) => {
+        getForecast(position.coords.latitude, position.coords.longitude)
         setStatus(null);
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
@@ -24,6 +35,21 @@ export default function Location() {
     }
   }
 
+  const getForecast = (lt, lg) => {
+    let apiKey;
+    if(process.env.OPEN_WEATHER_API_KEY !== undefined || process.env.OPEN_WEATHER_API_KEY !== "undefined"){
+      apiKey = process.env.OPEN_WEATHER_API_KEY;
+      console.log('API Key: ' + apiKey)
+      console.log('API Key ENV: ' + process.env.OPEN_WEATHER_API_KEY)
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lt}&lon=${lg}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=imperial`;
+      console.log('API Url: ' + apiUrl)
+      let response = fetch(apiUrl);
+      console.log('Resp: ' + response);
+    }else{
+      new Error("OpenWeather API Key not found!")
+    }
+  }
+  
   return (
     <div className={styles.container} onLoad={getLocation}>
       <Head>
@@ -38,15 +64,15 @@ export default function Location() {
         </h1>
 
         <div>
+          <p className={styles.description} >
+            This is the meme forecast for your location
+          </p>
           <p>{status}</p>
           {lat && <p>Latitude: {lat}</p>}
           {lng && <p>Longitude: {lng}</p>}
-          <a target="_blank" rel="noopener noreferrer" href={mapUrl}>View on Map</a>
+          {forecast && <p>Forecast: {forecast}</p>}
+          <a target="_blank" rel="noopener noreferrer" href={mapUrl}>View on Google Maps</a>
         </div>
-
-        <p className={styles.description}>
-          This is the meme forecast for your location
-        </p>
 
         <div className={styles.grid}>
         <div style={{width:"480px"}}><iframe allow="fullscreen" frameBorder="0" height="270" src="https://giphy.com/embed/d8II8GulCQtiRliwmB" width="480"></iframe></div>
