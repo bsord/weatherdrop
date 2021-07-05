@@ -6,6 +6,7 @@ export default function Location() {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
+  const [mapUrl, setMapUrl] = useState(null);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -16,6 +17,7 @@ export default function Location() {
         setStatus(null);
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
+        setMapUrl(`https://www.google.com/maps/search/?api=1&query=${position.coords.latitude},${position.coords.longitude}`)
       }, () => {
         setStatus('Unable to retrieve your location');
       });
@@ -35,11 +37,11 @@ export default function Location() {
           Your meme forecast
         </h1>
 
-        <div className="App">
-          <h1>Coordinates</h1>
+        <div>
           <p>{status}</p>
           {lat && <p>Latitude: {lat}</p>}
           {lng && <p>Longitude: {lng}</p>}
+          <a target="_blank" rel="noopener noreferrer" href={mapUrl}>View on Map</a>
         </div>
 
         <p className={styles.description}>
