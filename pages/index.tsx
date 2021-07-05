@@ -38,13 +38,10 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Copyright WeatherDrop 2020{' '}
-          
+        <a href="https://weatherdrop.io">
+          WeatherDrop.io ©
+          {' '}
+          {new Date().getFullYear()}
         </a>
       </footer>
     </div>
