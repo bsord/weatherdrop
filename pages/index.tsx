@@ -26,6 +26,7 @@ export default function Home() {
             <a href="" className={styles.card}>
               <h2>My Forecast &rarr;</h2>
               <p>Get the meme forecast based on your location</p>
+              <p>This requires you to allow location access</p>
             </a>
           </Link>
           <Link href="/random">
