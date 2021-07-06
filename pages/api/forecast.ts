@@ -41,7 +41,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
       })
     });
   } catch(err) {
-    res.status(200).json({
+    res.status(500).json({
       error: "There was an error with the request"
       //be careful about exposing backend errors
     })
