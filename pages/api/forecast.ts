@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import { useRouter } from 'next/router'
 
 let apiKey;
@@ -14,9 +14,13 @@ console.log('API Url: ' + apiUrl);
 let response = fetch(apiUrl);
 console.log('Resp: ' + response);
 
+type Data = {
+  name: string
+}
+
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({name: "Fuck Typescript"})
+  res.status(200).json({ name: 'Hello World' })
 }
