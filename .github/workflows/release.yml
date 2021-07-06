@@ -70,7 +70,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           tags: "latest,${{ steps.get-next-version.outputs.version }}"
-          push: "origin yourBranch --force"
+          push: "origin main --force"
 
       - name: Push Helm chart
         if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
