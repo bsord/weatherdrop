@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -25,6 +26,7 @@ export default function Home() {
             <a href="" className={styles.card}>
               <h2>My Forecast &rarr;</h2>
               <p>Get the meme forecast based on your location</p>
+              <p>This requires you to allow location access</p>
             </a>
           </Link>
           <Link href="/random">
@@ -33,19 +35,14 @@ export default function Home() {
               <p>Get the meme forecast of the day from a random major city</p>
             </a>
           </Link>
-
-          
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Copyright WeatherDrop 2020{' '}
-          
+        <a href="https://weatherdrop.io">
+          WeatherDrop.io ©
+          {' '}
+          {new Date().getFullYear()}
         </a>
       </footer>
     </div>
