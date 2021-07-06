@@ -34,7 +34,8 @@ export default function handler(req, res) {
           temp_min: forecast.main.temp_min,
           temp_max: forecast.main.temp_max,
           weather_status: forecast.weather[0].main,
-          weather_desc: forecast.weather[0].description
+          weather_status_desc: forecast.weather[0].description,
+          weather_status_id: forecast.weather[0].id,
         })
       } else {
         res.status(500).json({
