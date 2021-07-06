@@ -1,4 +1,13 @@
-# 0.1.0 (2021-07-01)
+# [0.2.0](https://github.com/bsord/weatherdrop/compare/0.1.0...0.2.0) (2021-07-06)
+
+
+### Features
+
+* Add initial location lookup to api ([e5e8bc5](https://github.com/bsord/weatherdrop/commit/e5e8bc5c841d60822500e4acb61296041d455085))
+
+
+
+# [0.1.0](https://github.com/bsord/weatherdrop/compare/ad14e7c61c437eb2d8f3ccf728600d441656dca5...0.1.0) (2021-07-01)
 
 
 ### Bug Fixes
