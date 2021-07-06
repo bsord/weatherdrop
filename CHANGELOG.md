@@ -1,3 +1,12 @@
+## [0.4.1](https://github.com/bsord/weatherdrop/compare/0.4.0...0.4.1) (2021-07-06)
+
+
+### Bug Fixes
+
+* **workflow:** Ensure builds are succesful before merge and release ([1663654](https://github.com/bsord/weatherdrop/commit/1663654d9e7c2c559d6c4e86fbfd47b9f66a1915))
+
+
+
 # [0.4.0](https://github.com/bsord/weatherdrop/compare/0.3.1...0.4.0) (2021-07-06)
 
 
@@ -39,15 +48,6 @@
 * Update state hooks to use int and str ([e62768a](https://github.com/bsord/weatherdrop/commit/e62768a16db515b10380ee23a70d3a7e768a5c48))
 * Use proper types for gifUrl props in random ([887b2b6](https://github.com/bsord/weatherdrop/commit/887b2b6048f873fd517d9579233c6810a4cbd80b))
 * Use types for forecast api method ([ab10ec5](https://github.com/bsord/weatherdrop/commit/ab10ec5c2e93cf07cec86cf0a1b87fa347248aa5))
-
-
-
-# [0.2.0](https://github.com/bsord/weatherdrop/compare/0.1.0...0.2.0) (2021-07-06)
-
-
-### Features
-
-* Add initial location lookup to api ([e5e8bc5](https://github.com/bsord/weatherdrop/commit/e5e8bc5c841d60822500e4acb61296041d455085))
 
 
 
