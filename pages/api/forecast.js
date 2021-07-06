@@ -5,7 +5,7 @@ export default function handler(req, res) {
   if(process.env.OPEN_WEATHER_API_KEY !== undefined || process.env.OPEN_WEATHER_API_KEY !== "undefined"){
     apiKey = process.env.OPEN_WEATHER_API_KEY;
   }else{
-    new Error("OpenWeather API Key not found!");
+    throw new Error("OpenWeather API Key not found!");
   }
   let { lat, long } = req.query
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`;
