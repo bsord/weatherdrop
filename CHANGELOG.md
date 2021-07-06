@@ -1,3 +1,15 @@
+## [0.2.1](https://github.com/bsord/weatherdrop/compare/0.2.0...0.2.1) (2021-07-06)
+
+
+### Bug Fixes
+
+* gifUrl type reference ([d8c608f](https://github.com/bsord/weatherdrop/commit/d8c608fd013614ff93c1e7c2fc600adb97da8296))
+* Update state hooks to use int and str ([e62768a](https://github.com/bsord/weatherdrop/commit/e62768a16db515b10380ee23a70d3a7e768a5c48))
+* Use proper types for gifUrl props in random ([887b2b6](https://github.com/bsord/weatherdrop/commit/887b2b6048f873fd517d9579233c6810a4cbd80b))
+* Use types for forecast api method ([ab10ec5](https://github.com/bsord/weatherdrop/commit/ab10ec5c2e93cf07cec86cf0a1b87fa347248aa5))
+
+
+
 # [0.2.0](https://github.com/bsord/weatherdrop/compare/0.1.0...0.2.0) (2021-07-06)
 
 
