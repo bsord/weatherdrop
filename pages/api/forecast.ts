@@ -11,7 +11,12 @@ type Data = {
   typescript: string
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+type Error = {
+  message: string
+}
+
+
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data | Error>) {
   let apiKey;
   if(process.env.OPEN_WEATHER_API_KEY !== undefined || process.env.OPEN_WEATHER_API_KEY !== "undefined"){
     apiKey = process.env.OPEN_WEATHER_API_KEY;
@@ -42,7 +47,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     });
   } catch(err) {
     res.status(500).json({
-      error: "There was an error with the request"
+      message: "There was an error with the request"
       //be careful about exposing backend errors
     })
     console.log(err)
