@@ -15,6 +15,13 @@ export default function handler(req, res) {
   }
   
   fetchForecastJSON().then(forecast => {
-    res.status(200).json(forecast)
+    res.status(200).json({
+      city: forecast.name,
+      temp_actual: forecast.main.temp,
+      temp_feels: forecast.main.feels_like,
+      weather_status: forecast.weather[0].main,
+      weather_desc: forecast.weather[0].description,
+      typescript: "sucks"
+    })
   });
 }
