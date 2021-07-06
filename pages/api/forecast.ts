@@ -1,4 +1,12 @@
-export default function handler(req: any, res: any) {
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+type Data = {
+
+}
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   let apiKey;
   if(process.env.OPEN_WEATHER_API_KEY !== undefined || process.env.OPEN_WEATHER_API_KEY !== "undefined"){
     apiKey = process.env.OPEN_WEATHER_API_KEY;
