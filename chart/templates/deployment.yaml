@@ -45,6 +45,11 @@ spec:
                 secretKeyRef: 
                   name: {{ .Values.secretName }}
                   key: giphyKey
+            - name: "OPEN_WEATHER_API_KEY"
+              valueFrom:
+                secretKeyRef: 
+                  name: {{ .Values.secretName }}
+                  key: openWeatherApiKey
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
