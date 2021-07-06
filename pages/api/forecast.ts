@@ -1,6 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+type Data = {
+}
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   let apiKey;
   if(process.env.OPEN_WEATHER_API_KEY !== undefined || process.env.OPEN_WEATHER_API_KEY !== "undefined"){
     apiKey = process.env.OPEN_WEATHER_API_KEY;
@@ -15,19 +21,25 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     const forecast = await response.json();
     return forecast;
   }
-  
-  fetchForecastJSON().then(forecast => {
+
+  try {
+    fetchForecastJSON().then(forecast => {
+      res.status(200).json({
+        city: forecast.name,
+        temp_actual: forecast.main.temp,
+        temp_feels: forecast.main.feels_like,
+        temp_min: forecast.main.temp_min,
+        temp_max: forecast.main.temp_max,
+        weather_status: forecast.weather[0].main,
+        weather_desc: forecast.weather[0].description,
+        typescript: "sucks"
+      })
+    });
+  } catch(err) {
     res.status(200).json({
-      city: forecast.name,
-      temp_actual: forecast.main.temp,
-      temp_feels: forecast.main.feels_like,
-      temp_min: forecast.main.temp_min,
-      temp_max: forecast.main.temp_max,
-      typescript: "sucks",
-      weather_status: forecast.weather[0].main,
-      weather_desc: forecast.weather[0].description,
-    }).catch(err => {
-      console.log(err)
+      error: "There was an error with the request"
+      //be careful about exposing backend errors
     })
-  });
+    console.log(err)
+  }
 }

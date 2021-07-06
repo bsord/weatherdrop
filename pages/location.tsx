@@ -3,11 +3,10 @@ import styles from '../styles/Home.module.css'
 import React, { useState } from 'react';
 
 export default function Location() {
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [status, setStatus] = useState(null);
-  const [mapUrl, setMapUrl] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+  const [status, setStatus] = useState("");
+  const [mapUrl, setMapUrl] = useState("");
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -15,23 +14,14 @@ export default function Location() {
     } else {
       setStatus('Locating...');
       navigator.geolocation.getCurrentPosition((position) => {
-        setStatus(null);
+        setStatus("");
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
         setMapUrl(`https://www.google.com/maps/search/?api=1&query=${position.coords.latitude},${position.coords.longitude}`)
-        fetchForecastJSON(position.coords.latitude, position.coords.longitude)
       }, () => {
         setStatus('Unable to retrieve your location');
       });
     }
-  }
-
-  async function fetchForecastJSON(lat, lng) {
-    let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
-    const response = await fetch(apiUrl);
-    const forecast = await response.json();
-    console.log(forecast)
-    return forecast;
   }
   
   return (
