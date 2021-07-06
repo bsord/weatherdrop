@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/bsord/weatherdrop/compare/0.3.0...0.3.1) (2021-07-06)
+
+
+### Bug Fixes
+
+* re-add api query ([86b4e19](https://github.com/bsord/weatherdrop/commit/86b4e196db0dbf4605dee0df0d302ff0a2523c8b))
+
+
+
 # [0.3.0](https://github.com/bsord/weatherdrop/compare/0.2.1...0.3.0) (2021-07-06)
 
 
