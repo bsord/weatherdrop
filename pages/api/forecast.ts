@@ -1,12 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-
-}
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   let apiKey;
   if(process.env.OPEN_WEATHER_API_KEY !== undefined || process.env.OPEN_WEATHER_API_KEY !== "undefined"){
     apiKey = process.env.OPEN_WEATHER_API_KEY;
@@ -27,9 +21,13 @@ export default function handler(
       city: forecast.name,
       temp_actual: forecast.main.temp,
       temp_feels: forecast.main.feels_like,
+      temp_min: forecast.main.temp_min,
+      temp_max: forecast.main.temp_max,
+      typescript: "sucks",
       weather_status: forecast.weather[0].main,
       weather_desc: forecast.weather[0].description,
-      typescript: "sucks"
+    }).catch(err => {
+      console.log(err)
     })
   });
 }
