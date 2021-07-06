@@ -29,6 +29,7 @@ export default function handler(req, res) {
       if('cod' in forecast && forecast.cod == '200'){
         res.status(200).json({
           city: forecast.name,
+          city_id: forecast.id,
           temp_actual: forecast.main.temp,
           temp_feels: forecast.main.feels_like,
           temp_min: forecast.main.temp_min,
