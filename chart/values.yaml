@@ -4,6 +4,7 @@ image:
   pullPolicy: Always
   repository: bsord/weatherdrop
 imagePullSecrets: []
+secretName: weatherdropsecret
 autoscaling:
   enabled: false
   minReplicas: 2
