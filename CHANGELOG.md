@@ -1,3 +1,16 @@
+## [0.4.2](https://github.com/bsord/weatherdrop/compare/0.4.1...0.4.2) (2021-07-06)
+
+
+### Bug Fixes
+
+* **workflow:** Rename build test step ([3a9eac9](https://github.com/bsord/weatherdrop/commit/3a9eac988b3c0d4b17f7c36f12e36931b7162e13))
+* **workflows:** Allow releases to push past branch protection ([7385304](https://github.com/bsord/weatherdrop/commit/7385304a294015e1ae785796e203a85b9eb4ee54))
+* **workflows:** Put push override in correct step ([68e4c16](https://github.com/bsord/weatherdrop/commit/68e4c16c4c8c09216d0e36814f5059f339b94f1f))
+* **workflows:** update add and commit action version ([f42fe01](https://github.com/bsord/weatherdrop/commit/f42fe01144cfb9ec7dbb24df6107e76a4e95b14a))
+* **workflows:** Use correct branch for push ([9fb21f0](https://github.com/bsord/weatherdrop/commit/9fb21f0b48fe241da4912c057f5e5d086edf4e0e))
+
+
+
 ## [0.4.1](https://github.com/bsord/weatherdrop/compare/0.4.0...0.4.1) (2021-07-06)
 
 
@@ -36,18 +49,6 @@
 ### Features
 
 * **helm:** Update deployment to use secrets ([ee23f64](https://github.com/bsord/weatherdrop/commit/ee23f642cdafb223232166939c0c65577ddfb0ef))
-
-
-
-## [0.2.1](https://github.com/bsord/weatherdrop/compare/0.2.0...0.2.1) (2021-07-06)
-
-
-### Bug Fixes
-
-* gifUrl type reference ([d8c608f](https://github.com/bsord/weatherdrop/commit/d8c608fd013614ff93c1e7c2fc600adb97da8296))
-* Update state hooks to use int and str ([e62768a](https://github.com/bsord/weatherdrop/commit/e62768a16db515b10380ee23a70d3a7e768a5c48))
-* Use proper types for gifUrl props in random ([887b2b6](https://github.com/bsord/weatherdrop/commit/887b2b6048f873fd517d9579233c6810a4cbd80b))
-* Use types for forecast api method ([ab10ec5](https://github.com/bsord/weatherdrop/commit/ab10ec5c2e93cf07cec86cf0a1b87fa347248aa5))
 
 
 
