@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import type { AppProps } from 'next/app'
 import styles from '../styles/Home.module.css'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 
-export default function Random({pageProps}: AppProps) {
-  const gifUrl = pageProps.gifUrl
+export default function Random({gifUrl}:any) {
+  console.log(gifUrl)
   return (
     <div className={styles.container}>
       <Head>
@@ -25,7 +24,7 @@ export default function Random({pageProps}: AppProps) {
 
         <div className={styles.grid}>
         {gifUrl && (
-            <img src={gifUrl} />
+            <img src={gifUrl} alt="Meme forecast" />
           )}
         </div>
       </main>
@@ -53,8 +52,6 @@ export async function getStaticProps() {
   } else {
     gifUrl = "https://media1.giphy.com/media/H7wajFPnZGdRWaQeu0/giphy.gif?cid=1995ed6coh4r816dv8hr3gw8f9p3clzvdsctlffxsvedomvr&rid=giphy.gif&ct=g"
   }
-  
-  console.log(gifUrl)
   
   return {
     props: { gifUrl},
