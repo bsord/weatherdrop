@@ -44,7 +44,6 @@ export default function Location() {
           <p>{status}</p>
           {lat && <p>Latitude: {lat}</p>}
           {lng && <p>Longitude: {lng}</p>}
-          {forecast && <p>Forecast: {forecast}</p>}
           <a target="_blank" rel="noopener noreferrer" href={mapUrl}>View on Google Maps</a>
         </div>
 
