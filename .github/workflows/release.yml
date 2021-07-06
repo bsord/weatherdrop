@@ -37,7 +37,7 @@ jobs:
 
       - name: Commit changes
         if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
-        uses: EndBug/add-and-commit@v5
+        uses: EndBug/add-and-commit@v7.2.1
         with:
           message: "chore(version): Bump to: ${{ steps.get-next-version.outputs.version }}"
           tag: "${{ steps.get-version.outputs.version }}"
