@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import type { AppProps } from 'next/app'
 import styles from '../styles/Home.module.css'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 
-export default function Random({gifUrl}) {
+export default function Random({pageProps}: AppProps) {
+  const gifUrl = pageProps.gifUrl
   return (
     <div className={styles.container}>
       <Head>
@@ -39,7 +41,7 @@ export default function Random({gifUrl}) {
   )
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticProps() {
 
   // get Gif and pass to the page props
   const giphyApiKey = process.env.GIPHY_KEY || "" 
