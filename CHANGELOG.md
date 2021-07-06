@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/bsord/weatherdrop/compare/0.2.1...0.3.0) (2021-07-06)
+
+
+### Bug Fixes
+
+* Use type for error responses ([b40a694](https://github.com/bsord/weatherdrop/commit/b40a694cf0fec444b7bfd5f464d265bdc13df109))
+
+
+### Features
+
+* **helm:** Update deployment to use secrets ([ee23f64](https://github.com/bsord/weatherdrop/commit/ee23f642cdafb223232166939c0c65577ddfb0ef))
+
+
+
 ## [0.2.1](https://github.com/bsord/weatherdrop/compare/0.2.0...0.2.1) (2021-07-06)
 
 
