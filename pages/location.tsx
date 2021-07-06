@@ -18,10 +18,19 @@ export default function Location() {
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
         setMapUrl(`https://www.google.com/maps/search/?api=1&query=${position.coords.latitude},${position.coords.longitude}`)
+        fetchForecastJSON(position.coords.latitude, position.coords.longitude)
       }, () => {
         setStatus('Unable to retrieve your location');
       });
     }
+  }
+
+  async function fetchForecastJSON(lat:number, lng:number) {
+    let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
+    const response = await fetch(apiUrl);
+    const forecast = await response.json();
+    console.log(forecast)
+    return forecast;
   }
   
   return (
