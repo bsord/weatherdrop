@@ -23,7 +23,7 @@ export default function Location() {
       });
     }
   }
-
+  
   return (
     <div className={styles.container} onLoad={getLocation}>
       <Head>
@@ -38,15 +38,15 @@ export default function Location() {
         </h1>
 
         <div>
+          <p className={styles.description} >
+            This is the meme forecast for your location
+          </p>
           <p>{status}</p>
           {lat && <p>Latitude: {lat}</p>}
           {lng && <p>Longitude: {lng}</p>}
-          <a target="_blank" rel="noopener noreferrer" href={mapUrl}>View on Map</a>
+          {forecast && <p>Forecast: {forecast}</p>}
+          <a target="_blank" rel="noopener noreferrer" href={mapUrl}>View on Google Maps</a>
         </div>
-
-        <p className={styles.description}>
-          This is the meme forecast for your location
-        </p>
 
         <div className={styles.grid}>
         <div style={{width:"480px"}}><iframe allow="fullscreen" frameBorder="0" height="270" src="https://giphy.com/embed/d8II8GulCQtiRliwmB" width="480"></iframe></div>
