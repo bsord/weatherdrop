@@ -3,8 +3,7 @@ import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 
-export default function Random({gifUrl}:any) {
-  console.log(gifUrl)
+export default function Random({gifUrl}) {
   return (
     <div className={styles.container}>
       <Head>

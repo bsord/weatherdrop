@@ -25,7 +25,7 @@ export default function Location() {
     }
   }
 
-  async function fetchForecastJSON(lat:number, lng:number) {
+  async function fetchForecastJSON(lat, lng) {
     let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
     const response = await fetch(apiUrl);
     const forecast = await response.json();
