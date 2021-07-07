@@ -1,28 +1,32 @@
 import { GiphyFetch } from '@giphy/js-fetch-api'
-export default async function handler(req, res) {
-  if(process.env.GIPHY_KEY){
-    const giphy = new GiphyFetch(process.env.GIPHY_KEY)
-    let { weatherId } = req.query
-    const searchTerm = getFunnySearchTerm(weatherId)
 
-    await giphy.search( searchTerm, { sort: 'relevant', lang: 'en', limit: 2, type: 'gifs' }).then(data => {
-      let rndInt = Math.floor(Math.random() * 2)
-      let gifUrl = data.data[rndInt].images.original.url
+// Init Giphy SDK
+const giphy = new GiphyFetch(process.env.GIPHY_KEY)
+
+export default function handler(req, res) {
+
+  // Get weather id, and grab related search keyword
+  let { weatherId } = req.query
+  const searchTerm = getFunnySearchTerm(weatherId)
+
+  // Search giphy for gif based on weather keyword
+  return giphy.search( searchTerm, { sort: 'relevant', lang: 'en', limit: 2, type: 'gifs' })
+    .then(response => {
+      // select random gif from response
+      let rndInt = Math.floor(Math.random() * response.data.length -1)
+      let gifUrl = response.data[rndInt].images.original.url
+      // Respond with selected gif url
       res.status(200).json({ gif: gifUrl })
-    }).catch(err => {
-      console.log(err)
-      res.status(500).json({ error: "Giphy API call failed" })
     })
-  }else{
-    throw new Error("GIPHY_KEY not found")
-  }
 }
+
 function getFunnySearchTerm(weatherId) {
   const funnySearchTerms = searchTermMappings[weatherId]
   const rndInt = Math.floor(Math.random() * funnySearchTerms.length) 
   const funnyTerm = funnySearchTerms[rndInt]
   return funnyTerm
 }
+
 const searchTermMappings = {
   //thunderstorms
   '200' : ['thunderstorm with light rain'], //thunderstorm with light rain
