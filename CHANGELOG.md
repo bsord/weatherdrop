@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/bsord/weatherdrop/compare/0.4.2...0.5.0) (2021-07-07)
+
+
+### Features
+
+* **gif:** Add gif api endpoint ([75f99be](https://github.com/bsord/weatherdrop/commit/75f99bed5ca2730ff6652adca4ca9972f7192db1))
+
+
+
 ## [0.4.2](https://github.com/bsord/weatherdrop/compare/0.4.1...0.4.2) (2021-07-06)
 
 
@@ -35,20 +44,6 @@
 ### Bug Fixes
 
 * re-add api query ([86b4e19](https://github.com/bsord/weatherdrop/commit/86b4e196db0dbf4605dee0df0d302ff0a2523c8b))
-
-
-
-# [0.3.0](https://github.com/bsord/weatherdrop/compare/0.2.1...0.3.0) (2021-07-06)
-
-
-### Bug Fixes
-
-* Use type for error responses ([b40a694](https://github.com/bsord/weatherdrop/commit/b40a694cf0fec444b7bfd5f464d265bdc13df109))
-
-
-### Features
-
-* **helm:** Update deployment to use secrets ([ee23f64](https://github.com/bsord/weatherdrop/commit/ee23f642cdafb223232166939c0c65577ddfb0ef))
 
 
 
