@@ -11,18 +11,19 @@ export default function Home() {
         <meta name="description" content="A page that reports the weather with memes and Gifs!" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/all.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
       </Head>
 
       <main className={styles.main}>
-        <i className="fas fa-cloud-sun fa-7x"></i>
+        <i style={{ color:'#E5E5E5' }} className="fas fa-cloud-sun fa-7x"></i>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">WeatherDrop</a>
         </h1>
-
-        <p className={styles.description}>
+        <h2 className={styles.description}>
           Your source for daily meme based weather forecasts
-        </p>
-
+        </h2>
         <div className={styles.grid}>
           <Link href="/location">
             <a href="" className={styles.card}>
@@ -35,7 +36,7 @@ export default function Home() {
             <a className={styles.card}>
               <i style={{ float:"left", paddingRight:"10px" }} className="fas fa-globe-americas fa-2x"></i>
               <h2 style={{ color:"#FCA311" }}>Random City &rarr;</h2>
-              <p>Get the meme forecast of the day from a random major city</p>
+              <p>Get the meme forecast from a random major city</p>
             </a>
           </Link>
         </div>

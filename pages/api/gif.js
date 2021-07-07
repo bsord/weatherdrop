@@ -4,7 +4,6 @@ import { GiphyFetch } from '@giphy/js-fetch-api'
 const giphy = new GiphyFetch(process.env.GIPHY_KEY)
 
 export default function handler(req, res) {
-
   // Get weather id, and grab related search keyword
   let { weatherId } = req.query
   const searchTerm = getFunnySearchTerm(weatherId)
@@ -13,7 +12,7 @@ export default function handler(req, res) {
   return giphy.search( searchTerm, { sort: 'relevant', lang: 'en', limit: 2, type: 'gifs' })
     .then(response => {
       // select random gif from response
-      let rndInt = Math.floor(Math.random() * response.data.length -1)
+      let rndInt = Math.floor(Math.random() * response.data.length)
       let gifUrl = response.data[rndInt].images.original.url
       // Respond with selected gif url
       res.status(200).json({ gif: gifUrl })
