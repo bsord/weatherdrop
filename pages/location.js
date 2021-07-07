@@ -58,41 +58,43 @@ export default function Location() {
         <meta name="description" content="a Random meme forecast" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/all.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
       </Head>
-
       <main className={styles.main}>
-        {
-          city &&
-          <h1 className={styles.title}>
-            {city}
-          </h1>
-        }
-
         <div>
           {
+              weather && weatherGif && 
+              <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
+          }
+          {
+            city &&
+            <h1 className={styles.title}>
+              {city}
+            </h1>
+          }
+          {
             weather &&
-            <p className={styles.description}>
+            <h3 className={styles.description}>
               Current Conditions: {weather}
-            </p>
+            </h3>
           }
           {
             temp && feels &&
             <p className={styles.description}>
-              Currently: {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; Feels Like: {feels}&deg; F
+              <i className="fas fa-thermometer-three-quarters"/> Currently: {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fas fa-sun"/> Feels Like: {feels}&deg; F
             </p>
           }
           {
             low && high &&
-            <p className={styles.description}>
-              Low: {low}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; High: {high}&deg; F
-            </p>
-          }
-          {
-            weather && weatherGif && 
-            <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
+            <div>
+              <p className={styles.description}>
+                <i className="fas fa-level-down-alt"/> Low: {low}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i className="fas fa-level-up-alt"/> High: {high}&deg; F
+              </p>
+            </div>
           }
         </div>
-
       </main>
 
       <footer className={styles.footer}>
