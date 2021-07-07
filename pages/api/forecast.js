@@ -14,13 +14,13 @@ export default function handler(req, res) {
     try {
       const response = await fetch(apiUrl);
       const forecast = await response.json();
-      console.log(forecast)
       return forecast;
     } catch(err) {
+      console.log(err)
       res.status(500).json({
         message: "There was a problem fetching weather data"
       })
-      console.log(err)
+
     }
   }
 
