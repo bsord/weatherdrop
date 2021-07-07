@@ -89,6 +89,7 @@ export default function Location() {
             <img src={weatherGif} alt={weather + "-gif"} />
           }
         </div>
+        <div style={{display:"none"}}><iframe></iframe></div>
       </main>
 
       <footer className={styles.footer}>
