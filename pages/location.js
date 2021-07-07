@@ -89,7 +89,7 @@ export default function Location() {
           }
           {
             weather && weatherGif && 
-            <img src={weatherGif} alt={weather + "-gif"} />
+            <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
           }
         </div>
 
