@@ -3,37 +3,31 @@ import styles from '../styles/Home.module.css'
 import React, { useState } from 'react';
 
 export default function Location() {
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
-  const [status, setStatus] = useState(null);
-  const [mapUrl, setMapUrl] = useState(null);
   const [city, setCity] = useState(null);
   const [temp, setTemp] = useState(null);
   const [feels, setFeels] = useState(null);
+  const [low, setLow] = useState(null);
+  const [high, setHigh] = useState(null);
   const [weather, setWeather] = useState(null);
-  const [weatherDesc, setWeatherDesc] = useState(null);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
-      setStatus('Geolocation is not supported by your browser');
     } else {
-      setStatus('Locating...');
       navigator.geolocation.getCurrentPosition((position) => {
-        setStatus("");
-        setLat(position.coords.latitude);
-        setLng(position.coords.longitude);
+        //console.log(position)
         fetchForecastJSON(position.coords.latitude, position.coords.longitude).then(forecast => {
           console.log(forecast)
           setCity(forecast.city)
+          setWeather(forecast.weather_status)
           setTemp(forecast.temp_actual)
           setFeels(forecast.temp_feels)
-          setWeather(forecast.weather_status)
-          setWeatherDesc(forecast.weather_status_desc)
+          setLow(forecast.temp_low)
+          setHigh(forecast.temp_high)
         }).catch(
           console.log("Unable to get Forecast from API")
         )
       }, () => {
-        setStatus('Unable to retrieve your location');
+        console.log("Unable to retrieve your location");
       });
     }
   }
@@ -67,13 +61,19 @@ export default function Location() {
           {
             weather &&
             <p className={styles.description}>
-              {weather}
+              Current Conditions: {weather}
             </p>
           }
           {
-            weatherDesc &&
+            temp && feels &&
             <p className={styles.description}>
-              {weatherDesc}
+              Currently: {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; Feels Like: {feels}&deg; F
+            </p>
+          }
+          {
+            low && high &&
+            <p className={styles.description}>
+              Low: {low}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; High: {high}&deg; F
             </p>
           }
         </div>
