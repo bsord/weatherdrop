@@ -39,6 +39,7 @@ export default function Location() {
         <title>WeatherDrop - Location</title>
         <meta name="description" content="a Random meme forecast" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/css/all.css" />
       </Head>
 
       <main className={styles.main}>

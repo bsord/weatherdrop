@@ -10,9 +10,11 @@ export default function Home() {
         <title>WeatherDrop</title>
         <meta name="description" content="A page that reports the weather with memes and Gifs!" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/css/all.css" />
       </Head>
 
       <main className={styles.main}>
+        <i class="fas fa-cloud-sun"></i>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">WeatherDrop!</a>
         </h1>
@@ -26,7 +28,6 @@ export default function Home() {
             <a href="" className={styles.card}>
               <h2>My Forecast &rarr;</h2>
               <p>Get the meme forecast based on your location</p>
-              <p>This requires you to allow location access</p>
             </a>
           </Link>
           <Link href="/random">
