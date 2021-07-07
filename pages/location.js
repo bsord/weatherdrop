@@ -9,6 +9,7 @@ export default function Location() {
   const [low, setLow] = useState(null);
   const [high, setHigh] = useState(null);
   const [weather, setWeather] = useState(null);
+  const [weatherId, setWeatherId] = useState(null);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -19,10 +20,12 @@ export default function Location() {
           console.log(forecast)
           setCity(forecast.city)
           setWeather(forecast.weather_status)
+          setWeatherId(forecast.weather_status_id)
           setTemp(forecast.temp_actual)
           setFeels(forecast.temp_feels)
           setLow(forecast.temp_low)
           setHigh(forecast.temp_high)
+          
         }).catch(
           console.log("Unable to get Forecast from API")
         )
@@ -31,7 +34,7 @@ export default function Location() {
       });
     }
   }
-
+  
   async function fetchForecastJSON(lat, lng) {
     let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
     const response = await fetch(apiUrl);
@@ -77,7 +80,10 @@ export default function Location() {
             </p>
           }
         </div>
-
+        {
+            weatherId > 0 &&
+            <WeatherGif weatherIds={weatherId}/>
+          }
         <div className={styles.grid}>
           <div style={{width:"480px"}}><iframe allow="fullscreen" frameBorder="0" height="270" src="https://giphy.com/embed/d8II8GulCQtiRliwmB" width="480"></iframe></div>
         </div>
@@ -92,4 +98,20 @@ export default function Location() {
       </footer>
     </div>
   )
+}
+
+const WeatherGif = (props) => {
+  console.log(props)
+    let apiUrl = `/api/gif?weatherId=${props.weatherIds}`;
+    const gifUrl =  fetch(apiUrl).then(response => {
+      return response.json().gif
+    });
+    if(gifUrl){
+      return (
+        <img src={gifUrl} />
+      )
+    } else {
+      return (<div>loading</div>)
+    }
+    
 }
