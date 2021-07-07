@@ -14,9 +14,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <i class="fas fa-cloud-sun"></i>
+        <i class="fas fa-cloud-sun fa-7x"></i>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">WeatherDrop!</a>
+          Welcome to <a href="https://nextjs.org">WeatherDrop</a>
         </h1>
 
         <p className={styles.description}>
