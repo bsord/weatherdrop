@@ -1,3 +1,12 @@
+## [0.5.2](https://github.com/bsord/weatherdrop/compare/0.5.1...0.5.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* **apis:** simplify api endpoint code, remove async, and add comments ([a98a369](https://github.com/bsord/weatherdrop/commit/a98a3696254776c6aff5b0c9152e029d9008bce1))
+
+
+
 ## [0.5.1](https://github.com/bsord/weatherdrop/compare/0.5.0...0.5.1) (2021-07-07)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * **workflow:** Ensure builds are succesful before merge and release ([1663654](https://github.com/bsord/weatherdrop/commit/1663654d9e7c2c559d6c4e86fbfd47b9f66a1915))
-
-
-
-# [0.4.0](https://github.com/bsord/weatherdrop/compare/0.3.1...0.4.0) (2021-07-06)
-
-
-### Features
-
-* **language:** Change codebase to javascript ([644ea12](https://github.com/bsord/weatherdrop/commit/644ea129ca617bae75863e92ac54b471be825855))
 
 
 
