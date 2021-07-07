@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <i class="fas fa-cloud-sun fa-7x"></i>
+        <i className="fas fa-cloud-sun fa-7x"></i>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">WeatherDrop</a>
         </h1>
@@ -26,13 +26,15 @@ export default function Home() {
         <div className={styles.grid}>
           <Link href="/location">
             <a href="" className={styles.card}>
-              <h2>My Forecast &rarr;</h2>
+              <i style={{ float:"left", paddingRight:"10px" }} className="fas fa-map-marker-alt fa-2x"></i>
+              <h2 style={{ color:"#FCA311" }}>My Forecast &rarr;</h2>
               <p>Get the meme forecast based on your location</p>
             </a>
           </Link>
           <Link href="/random">
             <a className={styles.card}>
-              <h2>Random City &rarr;</h2>
+              <i style={{ float:"left", paddingRight:"10px" }} className="fas fa-globe-americas fa-2x"></i>
+              <h2 style={{ color:"#FCA311" }}>Random City &rarr;</h2>
               <p>Get the meme forecast of the day from a random major city</p>
             </a>
           </Link>
