@@ -5,8 +5,13 @@ import React, { useState } from 'react';
 export default function Location() {
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
-  const [status, setStatus] = useState("");
-  const [mapUrl, setMapUrl] = useState("");
+  const [status, setStatus] = useState(null);
+  const [mapUrl, setMapUrl] = useState(null);
+  const [city, setCity] = useState(null);
+  const [temp, setTemp] = useState(null);
+  const [feels, setFeels] = useState(null);
+  const [weather, setWeather] = useState(null);
+  const [weatherDesc, setWeatherDesc] = useState(null);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -17,8 +22,16 @@ export default function Location() {
         setStatus("");
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
-        setMapUrl(`https://www.google.com/maps/search/?api=1&query=${position.coords.latitude},${position.coords.longitude}`)
-        fetchForecastJSON(position.coords.latitude, position.coords.longitude)
+        fetchForecastJSON(position.coords.latitude, position.coords.longitude).then(forecast => {
+          console.log(forecast)
+          setCity(forecast.city)
+          setTemp(forecast.temp_actual)
+          setFeels(forecast.temp_feels)
+          setWeather(forecast.weather_status)
+          setWeatherDesc(forecast.weather_status_desc)
+        }).catch(
+          console.log("Unable to get Forecast from API")
+        )
       }, () => {
         setStatus('Unable to retrieve your location');
       });
@@ -29,7 +42,7 @@ export default function Location() {
     let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
     const response = await fetch(apiUrl);
     const forecast = await response.json();
-    console.log(forecast)
+    //console.log(forecast)
     return forecast;
   }
   
@@ -43,22 +56,30 @@ export default function Location() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Your meme forecast
-        </h1>
+        {
+          city &&
+          <h1 className={styles.title}>
+            {city}
+          </h1>
+        }
 
         <div>
-          <p className={styles.description} >
-            This is the meme forecast for your location
-          </p>
-          <p>{status}</p>
-          {lat && <p>Latitude: {lat}</p>}
-          {lng && <p>Longitude: {lng}</p>}
-          <a target="_blank" rel="noopener noreferrer" href={mapUrl}>View on Google Maps</a>
+          {
+            weather &&
+            <p className={styles.description}>
+              {weather}
+            </p>
+          }
+          {
+            weatherDesc &&
+            <p className={styles.description}>
+              {weatherDesc}
+            </p>
+          }
         </div>
 
         <div className={styles.grid}>
-        <div style={{width:"480px"}}><iframe allow="fullscreen" frameBorder="0" height="270" src="https://giphy.com/embed/d8II8GulCQtiRliwmB" width="480"></iframe></div>
+          <div style={{width:"480px"}}><iframe allow="fullscreen" frameBorder="0" height="270" src="https://giphy.com/embed/d8II8GulCQtiRliwmB" width="480"></iframe></div>
         </div>
       </main>
 
