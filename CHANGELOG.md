@@ -1,3 +1,13 @@
+## [0.5.1](https://github.com/bsord/weatherdrop/compare/0.5.0...0.5.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* rework client side api calls ([018ea0a](https://github.com/bsord/weatherdrop/commit/018ea0a326a0e6978ef915a838b7ddfeeaeb2464))
+* Use larger width for gif display ([de9a4a9](https://github.com/bsord/weatherdrop/commit/de9a4a91fa0368238dd575ada7b08581f9ee8043))
+
+
+
 # [0.5.0](https://github.com/bsord/weatherdrop/compare/0.4.2...0.5.0) (2021-07-07)
 
 
@@ -35,15 +45,6 @@
 ### Features
 
 * **language:** Change codebase to javascript ([644ea12](https://github.com/bsord/weatherdrop/commit/644ea129ca617bae75863e92ac54b471be825855))
-
-
-
-## [0.3.1](https://github.com/bsord/weatherdrop/compare/0.3.0...0.3.1) (2021-07-06)
-
-
-### Bug Fixes
-
-* re-add api query ([86b4e19](https://github.com/bsord/weatherdrop/commit/86b4e196db0dbf4605dee0df0d302ff0a2523c8b))
 
 
 
