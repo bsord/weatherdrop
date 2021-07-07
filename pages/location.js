@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 export default function Location() {
   const [city, setCity] = useState(null);
@@ -17,40 +17,42 @@ export default function Location() {
     } else {
       navigator.geolocation.getCurrentPosition((position) => {
         //console.log(position)
-        fetchForecastJSON(position.coords.latitude, position.coords.longitude).then(forecast => {
-          getWeatherGif(forecast.weather_status_id)
-          setCity(forecast.city)
-          setWeather(forecast.weather_status)
-          setTemp(forecast.temp_actual)
-          setFeels(forecast.temp_feels)
-          setLow(forecast.temp_low)
-          setHigh(forecast.temp_high)
-        }).catch(
-          console.log("Unable to get Forecast from API")
-        )
+        fetchForecastJSON(position.coords.latitude, position.coords.longitude)
       }, () => {
         console.log("Unable to retrieve your location");
       });
     }
   }
 
-  async function getWeatherGif(id) {
+  function getWeatherGif(id) {
     let apiUrl = `/api/gif?weatherId=${id}`;
-    const response = await fetch(apiUrl);
-    const gif = await response.json();
-    setWeatherGif(gif.gif)
-    return;
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => setWeatherGif(data.gif));
   };
-  
-  async function fetchForecastJSON(lat, lng) {
+
+  function fetchForecastJSON(lat, lng) {
     let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
-    const response = await fetch(apiUrl);
-    const forecast = await response.json();
-    return forecast;
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(forecast => {
+        getWeatherGif(forecast.weather_status_id)
+        setCity(forecast.city)
+        setWeather(forecast.weather_status)
+        setTemp(forecast.temp_actual)
+        setFeels(forecast.temp_feels)
+        setLow(forecast.temp_low)
+        setHigh(forecast.temp_high)
+      });
+
   }
   
+  useEffect(()=>{
+    getLocation()
+  }, []);
+
   return (
-    <div className={styles.container} onLoad={getLocation}>
+    <div className={styles.container} >
       <Head>
         <title>WeatherDrop - Location</title>
         <meta name="description" content="a Random meme forecast" />
@@ -87,10 +89,10 @@ export default function Location() {
           }
           {
             weather && weatherGif && 
-            <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
+            <img src={weatherGif} alt={weather + "-gif"} />
           }
         </div>
-        <div style={{display:"none"}}><iframe></iframe></div> {/* I dare you to remove this */}
+
       </main>
 
       <footer className={styles.footer}>
