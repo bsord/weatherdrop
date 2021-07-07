@@ -9,23 +9,22 @@ export default function Location() {
   const [low, setLow] = useState(null);
   const [high, setHigh] = useState(null);
   const [weather, setWeather] = useState(null);
-  const [weatherId, setWeatherId] = useState(null);
+  const [weatherGif, setWeatherGif] = useState(null);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
+      console.log("This browser does not support Geolocation")
     } else {
       navigator.geolocation.getCurrentPosition((position) => {
         //console.log(position)
         fetchForecastJSON(position.coords.latitude, position.coords.longitude).then(forecast => {
-          console.log(forecast)
+          getWeatherGif(forecast.weather_status_id)
           setCity(forecast.city)
           setWeather(forecast.weather_status)
-          setWeatherId(forecast.weather_status_id)
           setTemp(forecast.temp_actual)
           setFeels(forecast.temp_feels)
           setLow(forecast.temp_low)
           setHigh(forecast.temp_high)
-          
         }).catch(
           console.log("Unable to get Forecast from API")
         )
@@ -34,12 +33,18 @@ export default function Location() {
       });
     }
   }
+
+  async function getWeatherGif(id) {
+    let apiUrl = `/api/gif?weatherId=${id}`;
+    const response = await fetch(apiUrl);
+    const gif = await response.json();
+    setWeatherGif(gif.gif)
+  };
   
   async function fetchForecastJSON(lat, lng) {
     let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
     const response = await fetch(apiUrl);
     const forecast = await response.json();
-    //console.log(forecast)
     return forecast;
   }
   
@@ -79,13 +84,10 @@ export default function Location() {
               Low: {low}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; High: {high}&deg; F
             </p>
           }
-        </div>
-        {
-            weatherId > 0 &&
-            <WeatherGif weatherIds={weatherId}/>
+          {
+            weather && weatherGif && 
+            <img src={weatherGif} alt={weather + "-gif"} />
           }
-        <div className={styles.grid}>
-          <div style={{width:"480px"}}><iframe allow="fullscreen" frameBorder="0" height="270" src="https://giphy.com/embed/d8II8GulCQtiRliwmB" width="480"></iframe></div>
         </div>
       </main>
 
@@ -98,20 +100,4 @@ export default function Location() {
       </footer>
     </div>
   )
-}
-
-const WeatherGif = (props) => {
-  console.log(props)
-    let apiUrl = `/api/gif?weatherId=${props.weatherIds}`;
-    const gifUrl =  fetch(apiUrl).then(response => {
-      return response.json().gif
-    });
-    if(gifUrl){
-      return (
-        <img src={gifUrl} />
-      )
-    } else {
-      return (<div>loading</div>)
-    }
-    
 }

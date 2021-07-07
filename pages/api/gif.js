@@ -7,18 +7,13 @@ export default async function handler(req, res) {
       const gf = new GiphyFetch(giphyApiKey)
       let { weatherId } = req.query
       const searchTerm = getFunnySearchTerm(weatherId)
-      console.log(searchTerm)
-      // exchange weather description for funny keywords.
-      const maxInt = 2
-      const rndInt = Math.floor(Math.random() * maxInt)
-      console.log(rndInt)
-      const { data: gifs } = await gf.search( searchTerm, { sort: 'relevant', lang: 'es', limit: maxInt, type: 'gifs' })
+      // Exchange weather description for funny keywords.
+      const rndInt = Math.floor(Math.random() * 2)
+      const { data: gifs } = await gf.search( searchTerm, { sort: 'relevant', lang: 'en', limit: 2, type: 'gifs' })
       gifUrl = gifs[rndInt].images.original.url
-      res.status(200).json({
-        gif: gifUrl
-      })
+      res.status(200).json({ gif: gifUrl })
     } else {
-      res.status(200).json({
+      res.status(500).json({
         gifUrl: "https://media1.giphy.com/media/H7wajFPnZGdRWaQeu0/giphy.gif?cid=1995ed6coh4r816dv8hr3gw8f9p3clzvdsctlffxsvedomvr&rid=giphy.gif&ct=g"
       })
     }
@@ -30,7 +25,6 @@ export default async function handler(req, res) {
   }
 }
 function getFunnySearchTerm(weatherId) {
-  console.log(weatherId)
   const funnySearchTerms = searchTermMappings[weatherId]
   const rndInt = Math.floor(Math.random() * funnySearchTerms.length) 
   const funnyTerm = funnySearchTerms[rndInt]
