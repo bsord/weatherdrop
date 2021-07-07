@@ -39,6 +39,7 @@ export default function Location() {
     const response = await fetch(apiUrl);
     const gif = await response.json();
     setWeatherGif(gif.gif)
+    return;
   };
   
   async function fetchForecastJSON(lat, lng) {
@@ -86,10 +87,10 @@ export default function Location() {
           }
           {
             weather && weatherGif && 
-            <img src={weatherGif} alt={weather + "-gif"} />
+            <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
           }
         </div>
-        <div style={{display:"none"}}><iframe></iframe></div>
+        <div style={{display:"none"}}><iframe></iframe></div> {/* I dare you to remove this */}
       </main>
 
       <footer className={styles.footer}>

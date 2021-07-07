@@ -1,27 +1,20 @@
 import { GiphyFetch } from '@giphy/js-fetch-api'
 export default async function handler(req, res) {
-  const giphyApiKey = process.env.GIPHY_KEY || "" 
-  let gifUrl = ""
-  try {
-    if(giphyApiKey != ""){
-      const gf = new GiphyFetch(giphyApiKey)
-      let { weatherId } = req.query
-      const searchTerm = getFunnySearchTerm(weatherId)
-      // Exchange weather description for funny keywords.
-      const rndInt = Math.floor(Math.random() * 2)
-      const { data: gifs } = await gf.search( searchTerm, { sort: 'relevant', lang: 'en', limit: 2, type: 'gifs' })
-      gifUrl = gifs[rndInt].images.original.url
+  if(process.env.GIPHY_KEY){
+    const giphy = new GiphyFetch(process.env.GIPHY_KEY)
+    let { weatherId } = req.query
+    const searchTerm = getFunnySearchTerm(weatherId)
+
+    await giphy.search( searchTerm, { sort: 'relevant', lang: 'en', limit: 2, type: 'gifs' }).then(data => {
+      let rndInt = Math.floor(Math.random() * 2)
+      let gifUrl = data.data[rndInt].images.original.url
       res.status(200).json({ gif: gifUrl })
-    } else {
-      res.status(500).json({
-        gifUrl: "https://media1.giphy.com/media/H7wajFPnZGdRWaQeu0/giphy.gif?cid=1995ed6coh4r816dv8hr3gw8f9p3clzvdsctlffxsvedomvr&rid=giphy.gif&ct=g"
-      })
-    }
-  } catch(err) {
-    res.status(500).json({
-      message: "There was a problem getting the gif"
+    }).catch(err => {
+      console.log(err)
+      res.status(500).json({ error: "Giphy API call failed" })
     })
-    console.log(err)
+  }else{
+    throw new Error("GIPHY_KEY not found")
   }
 }
 function getFunnySearchTerm(weatherId) {
