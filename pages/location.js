@@ -83,7 +83,7 @@ export default function Location() {
           {
             temp && feels &&
             <p className={styles.description}>
-              <i className="fas fa-thermometer-three-quarters"/> Currently: {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fas fa-sun"/> Feels Like: {feels}&deg; F
+              <i className="fas fa-thermometer-three-quarters"/> Currently: {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i className="fas fa-sun"/> Feels Like: {feels}&deg; F
             </p>
           }
           {
