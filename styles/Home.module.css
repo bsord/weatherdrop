@@ -33,6 +33,11 @@
   flex-grow: 1;
 }
 
+.title {
+  color: #FCA311;
+  text-decoration: none;
+}
+
 .title a {
   color: #FCA311;
   text-decoration: none;
