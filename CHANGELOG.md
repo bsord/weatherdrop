@@ -1,3 +1,12 @@
+## [0.5.3](https://github.com/bsord/weatherdrop/compare/0.5.2...0.5.3) (2021-07-08)
+
+
+### Bug Fixes
+
+* crossOrigin warnings due to boolean when string expected ([942de68](https://github.com/bsord/weatherdrop/commit/942de683e05f4882d05dc0f9a85cef8020f8444c))
+
+
+
 ## [0.5.2](https://github.com/bsord/weatherdrop/compare/0.5.1...0.5.2) (2021-07-07)
 
 
@@ -36,15 +45,6 @@
 * **workflows:** Put push override in correct step ([68e4c16](https://github.com/bsord/weatherdrop/commit/68e4c16c4c8c09216d0e36814f5059f339b94f1f))
 * **workflows:** update add and commit action version ([f42fe01](https://github.com/bsord/weatherdrop/commit/f42fe01144cfb9ec7dbb24df6107e76a4e95b14a))
 * **workflows:** Use correct branch for push ([9fb21f0](https://github.com/bsord/weatherdrop/commit/9fb21f0b48fe241da4912c057f5e5d086edf4e0e))
-
-
-
-## [0.4.1](https://github.com/bsord/weatherdrop/compare/0.4.0...0.4.1) (2021-07-06)
-
-
-### Bug Fixes
-
-* **workflow:** Ensure builds are succesful before merge and release ([1663654](https://github.com/bsord/weatherdrop/commit/1663654d9e7c2c559d6c4e86fbfd47b9f66a1915))
 
 
 
