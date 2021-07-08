@@ -32,13 +32,6 @@ export default function Home() {
               <p>Get the meme forecast based on your location</p>
             </a>
           </Link>
-          <Link href="/random">
-            <a className={styles.card}>
-              <i style={{ float:"left", paddingRight:"10px" }} className="fas fa-globe-americas fa-2x"></i>
-              <h2 style={{ color:"#FCA311" }}>Random City &rarr;</h2>
-              <p>Get the meme forecast from a random major city</p>
-            </a>
-          </Link>
         </div>
       </main>
 
