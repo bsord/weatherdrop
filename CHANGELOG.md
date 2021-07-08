@@ -1,3 +1,12 @@
+## [0.5.4](https://github.com/bsord/weatherdrop/compare/0.5.3...0.5.4) (2021-07-08)
+
+
+### Bug Fixes
+
+* Remove un-used random page ([d84fd7c](https://github.com/bsord/weatherdrop/commit/d84fd7c53ac4d44bd47be3da81e810342972bfda))
+
+
+
 ## [0.5.3](https://github.com/bsord/weatherdrop/compare/0.5.2...0.5.3) (2021-07-08)
 
 
@@ -32,19 +41,6 @@
 ### Features
 
 * **gif:** Add gif api endpoint ([75f99be](https://github.com/bsord/weatherdrop/commit/75f99bed5ca2730ff6652adca4ca9972f7192db1))
-
-
-
-## [0.4.2](https://github.com/bsord/weatherdrop/compare/0.4.1...0.4.2) (2021-07-06)
-
-
-### Bug Fixes
-
-* **workflow:** Rename build test step ([3a9eac9](https://github.com/bsord/weatherdrop/commit/3a9eac988b3c0d4b17f7c36f12e36931b7162e13))
-* **workflows:** Allow releases to push past branch protection ([7385304](https://github.com/bsord/weatherdrop/commit/7385304a294015e1ae785796e203a85b9eb4ee54))
-* **workflows:** Put push override in correct step ([68e4c16](https://github.com/bsord/weatherdrop/commit/68e4c16c4c8c09216d0e36814f5059f339b94f1f))
-* **workflows:** update add and commit action version ([f42fe01](https://github.com/bsord/weatherdrop/commit/f42fe01144cfb9ec7dbb24df6107e76a4e95b14a))
-* **workflows:** Use correct branch for push ([9fb21f0](https://github.com/bsord/weatherdrop/commit/9fb21f0b48fe241da4912c057f5e5d086edf4e0e))
 
 
 
