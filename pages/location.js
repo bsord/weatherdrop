@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Location.module.css'
 import React, { useState,useEffect } from 'react';
 
 export default function Location() {
@@ -9,7 +9,7 @@ export default function Location() {
   const [low, setLow] = useState(null);
   const [high, setHigh] = useState(null);
   const [weather, setWeather] = useState(null);
-  const [weatherGif, setWeatherGif] = useState(null);
+  const [weatherGif, setWeatherGif] = useState("");
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -63,10 +63,12 @@ export default function Location() {
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
       </Head>
       <main className={styles.main}>
-        <div>
+        <div className={styles.card}>
           {
-              weather && weatherGif && 
-              <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
+              weather && weatherGif &&
+              <div className={styles.logo}>
+                <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
+              </div>
           }
           {
             city &&
@@ -77,13 +79,13 @@ export default function Location() {
           {
             weather &&
             <h3 className={styles.description}>
-              Current Conditions: {weather}
+               <i style={{ paddingRight:"5px" }} className="fas fa-thermometer-three-quarters"/> {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i style={{ paddingRight:"5px" }} className="fas fa-sun"/> {weather}
             </h3>
           }
           {
             temp && feels &&
             <p className={styles.description}>
-              <i className="fas fa-thermometer-three-quarters"/> Currently: {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i className="fas fa-sun"/> Feels Like: {feels}&deg; F
+              <i className="fas fa-sun"/> Feels Like: {feels}&deg; F
             </p>
           }
           {
@@ -98,7 +100,7 @@ export default function Location() {
       </main>
 
       <footer className={styles.footer}>
-        <a href="https://weatherdrop.io">
+        <a href="/">
           WeatherDrop.io ©
           {' '}
           {new Date().getFullYear()}
