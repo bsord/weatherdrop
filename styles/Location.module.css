@@ -23,6 +23,11 @@
   margin-bottom: 10px;
 }
 
+.logo img {
+  display: block;
+  margin: auto;
+}
+
 .title {
   color: #FCA311;
   text-decoration: none;
@@ -82,7 +87,7 @@
   text-decoration: none;
   border: 1px solid #E5E5E5;
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  /* transition: color 0.15s ease, border-color 0.15s ease; */
   /* width: 45%; */
 }
 
@@ -93,12 +98,14 @@
   }
 }
 
+/*
 .card:hover,
 .card:focus,
 .card:active {
   color: #FCA311;
   border-color: #FCA311;
-}
+} 
+*/
 
 .card h2 {
   margin: 0 0 1rem 0;

@@ -17,7 +17,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <i style={{ color:'#E5E5E5' }} className="fas fa-cloud-sun fa-7x"></i>
+        <div className={styles.logo}>
+          <i style={{ color:'#E5E5E5' }} className="fas fa-cloud-sun fa-9x"></i>
+        </div>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">WeatherDrop</a>
         </h1>
@@ -29,14 +31,14 @@ export default function Home() {
             <a href="" className={styles.card}>
               <i style={{ float:"left", paddingRight:"10px" }} className="fas fa-map-marker-alt fa-2x"></i>
               <h2 style={{ color:"#FCA311" }}>My Forecast &rarr;</h2>
-              <p>Get the meme forecast based on your location</p>
+              <p style={{ color:'#E5E5E5' }}>Get the meme forecast based on your location</p>
             </a>
           </Link>
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a href="https://weatherdrop.io">
+        <a href="/">
           WeatherDrop.io ©
           {' '}
           {new Date().getFullYear()}
