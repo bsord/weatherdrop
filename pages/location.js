@@ -17,7 +17,7 @@ export default function Location() {
     } else {
       navigator.geolocation.getCurrentPosition((position) => {
         //console.log(position)
-        fetchForecastJSON(position.coords.latitude, position.coords.longitude)
+        fetchSummaryJSON(position.coords.latitude, position.coords.longitude)
       }, () => {
         console.log("Unable to retrieve your location");
       });
@@ -31,8 +31,8 @@ export default function Location() {
       .then(data => setWeatherGif(data.gif));
   };
 
-  function fetchForecastJSON(lat, lng) {
-    let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
+  function fetchSummaryJSON(lat, lng) {
+    let apiUrl = `/api/summary?lat=${lat}&long=${lng}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(forecast => {
@@ -100,8 +100,7 @@ export default function Location() {
       </main>
 
       <footer className={styles.footer}>
-        <a href="/">
-          WeatherDrop.io ©
+        <a href="/"> WeatherDrop.io ©
           {' '}
           {new Date().getFullYear()}
         </a>
