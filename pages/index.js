@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/all.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
       </Head>
 
@@ -30,13 +30,6 @@ export default function Home() {
               <i style={{ float:"left", paddingRight:"10px" }} className="fas fa-map-marker-alt fa-2x"></i>
               <h2 style={{ color:"#FCA311" }}>My Forecast &rarr;</h2>
               <p>Get the meme forecast based on your location</p>
-            </a>
-          </Link>
-          <Link href="/random">
-            <a className={styles.card}>
-              <i style={{ float:"left", paddingRight:"10px" }} className="fas fa-globe-americas fa-2x"></i>
-              <h2 style={{ color:"#FCA311" }}>Random City &rarr;</h2>
-              <p>Get the meme forecast from a random major city</p>
             </a>
           </Link>
         </div>
