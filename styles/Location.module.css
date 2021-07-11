@@ -10,7 +10,7 @@
 }
 
 .main {
-  padding: 5rem 0;
+  padding: 3rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,12 @@
 
 .logo {
   margin-bottom: 10px;
-  text-shadow: -3px 4px 10px rgba(150, 150, 150, 0.6);
+}
+
+.logo img {
+  display: block;
+  margin: auto;
+  box-shadow: -3px 4px 10px rgba(150, 150, 150, 0.6);
 }
 
 .title {
@@ -34,11 +39,11 @@
   text-decoration: none;
 }
 
-/* .title a:hover,
+.title a:hover,
 .title a:focus,
 .title a:active {
   text-decoration: underline;
-} */
+}
 
 .title {
   margin: 0;
@@ -84,9 +89,9 @@
   text-decoration: none;
   /* border: 1px solid rgba(150, 150, 150, 0.6); */
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
   box-shadow: -3px 4px 10px rgba(150, 150, 150, 0.6);
   text-shadow: -3px 4px 10px rgba(150, 150, 150, 0.6);
+  /* transition: color 0.15s ease, border-color 0.15s ease; */
   /* width: 45%; */
 }
 
@@ -97,12 +102,14 @@
   }
 }
 
+/*
 .card:hover,
 .card:focus,
 .card:active {
   color: #FCA311;
   border-color: #FCA311;
-}
+} 
+*/
 
 .card h2 {
   margin: 0 0 1rem 0;

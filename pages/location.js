@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+import styles from '../styles/Location.module.css'
 import React, { useState,useEffect } from 'react';
 
 export default function Location() {
@@ -9,7 +10,7 @@ export default function Location() {
   const [low, setLow] = useState(null);
   const [high, setHigh] = useState(null);
   const [weather, setWeather] = useState(null);
-  const [weatherGif, setWeatherGif] = useState(null);
+  const [weatherGif, setWeatherGif] = useState("");
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -17,26 +18,26 @@ export default function Location() {
     } else {
       navigator.geolocation.getCurrentPosition((position) => {
         //console.log(position)
-        fetchForecastJSON(position.coords.latitude, position.coords.longitude)
+        fetchSummaryJSON(position.coords.latitude, position.coords.longitude)
       }, () => {
         console.log("Unable to retrieve your location");
       });
     }
   }
 
-  function getWeatherGif(id) {
-    let apiUrl = `/api/gif?weatherId=${id}`;
+  function getWeatherGif(id, temp) {
+    let apiUrl = `/api/gif?weatherId=${id}&temp=${temp}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => setWeatherGif(data.gif));
   };
 
-  function fetchForecastJSON(lat, lng) {
-    let apiUrl = `/api/forecast?lat=${lat}&long=${lng}`;
+  function fetchSummaryJSON(lat, lng) {
+    let apiUrl = `/api/summary?lat=${lat}&long=${lng}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(forecast => {
-        getWeatherGif(forecast.weather_status_id)
+        getWeatherGif(forecast.weather_status_id, forecast.temp_actual)
         setCity(forecast.city)
         setWeather(forecast.weather_status)
         setTemp(forecast.temp_actual)
@@ -61,12 +62,18 @@ export default function Location() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <main className={styles.main}>
-        <div>
+        <div className={styles.card}>
           {
-              weather && weatherGif && 
-              <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
+              weather && weatherGif &&
+              <div className={styles.logo}>
+                <img src={weatherGif} alt={weather + "-gif"} width="75%" height="75%"/>
+              </div>
           }
           {
             city &&
@@ -77,13 +84,13 @@ export default function Location() {
           {
             weather &&
             <h3 className={styles.description}>
-              Current Conditions: {weather}
+               <i style={{ paddingRight:"5px" }} className="fas fa-thermometer-three-quarters"/> {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i style={{ paddingRight:"5px" }} className="fas fa-sun"/> {weather}
             </h3>
           }
           {
             temp && feels &&
             <p className={styles.description}>
-              <i className="fas fa-thermometer-three-quarters"/> Currently: {temp}&deg; F &nbsp;&nbsp; | &nbsp;&nbsp; <i className="fas fa-sun"/> Feels Like: {feels}&deg; F
+              <i className="fas fa-sun"/> Feels Like: {feels}&deg; F
             </p>
           }
           {
@@ -98,11 +105,12 @@ export default function Location() {
       </main>
 
       <footer className={styles.footer}>
-        <a href="https://weatherdrop.io">
-          WeatherDrop.io ©
-          {' '}
-          {new Date().getFullYear()}
-        </a>
+        <Link href="/">
+          <a>WeatherDrop.io ©
+            {' '}
+            {new Date().getFullYear()}
+          </a>
+        </Link>
       </footer>
     </div>
   )
