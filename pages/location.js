@@ -10,7 +10,7 @@ export default function Location() {
   const [low, setLow] = useState(null);
   const [high, setHigh] = useState(null);
   const [weather, setWeather] = useState(null);
-  const [weatherGif, setWeatherGif] = useState("");
+  const [weatherGif, setWeatherGif] = useState(null);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
