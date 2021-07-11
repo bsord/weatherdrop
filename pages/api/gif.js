@@ -12,7 +12,7 @@ function getRandomGif(weatherId, temp) {
   }else if(temp >= 95){
     gifUrl = hot[Math.floor(Math.random() * hot.length)];
   }else {
-    switch(weatherId) {
+    switch(true) {
       case weatherId >= 200 && weatherId <= 235:
         gifUrl = thunder[Math.floor(Math.random() * thunder.length)];
         break;
