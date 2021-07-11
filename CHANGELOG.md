@@ -1,3 +1,12 @@
+## [0.5.5](https://github.com/bsord/weatherdrop/compare/0.5.4...0.5.5) (2021-07-11)
+
+
+### Bug Fixes
+
+* Remove un-used giphy env var references ([2e81a0d](https://github.com/bsord/weatherdrop/commit/2e81a0d64b5e02d1d8b449dec400b4fe07d13793))
+
+
+
 ## [0.5.4](https://github.com/bsord/weatherdrop/compare/0.5.3...0.5.4) (2021-07-08)
 
 
@@ -32,15 +41,6 @@
 
 * rework client side api calls ([018ea0a](https://github.com/bsord/weatherdrop/commit/018ea0a326a0e6978ef915a838b7ddfeeaeb2464))
 * Use larger width for gif display ([de9a4a9](https://github.com/bsord/weatherdrop/commit/de9a4a91fa0368238dd575ada7b08581f9ee8043))
-
-
-
-# [0.5.0](https://github.com/bsord/weatherdrop/compare/0.4.2...0.5.0) (2021-07-07)
-
-
-### Features
-
-* **gif:** Add gif api endpoint ([75f99be](https://github.com/bsord/weatherdrop/commit/75f99bed5ca2730ff6652adca4ca9972f7192db1))
 
 
 
