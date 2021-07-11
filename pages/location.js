@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Location.module.css'
 import React, { useState,useEffect } from 'react';
 
