@@ -24,8 +24,8 @@ export default function Location() {
     }
   }
 
-  function getWeatherGif(id) {
-    let apiUrl = `/api/gif?weatherId=${id}`;
+  function getWeatherGif(id, temp) {
+    let apiUrl = `/api/gif?weatherId=${id}&temp=${temp}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => setWeatherGif(data.gif));
@@ -36,7 +36,7 @@ export default function Location() {
     fetch(apiUrl)
       .then(response => response.json())
       .then(forecast => {
-        getWeatherGif(forecast.weather_status_id)
+        getWeatherGif(forecast.weather_status_id, forecast.temp_actual)
         setCity(forecast.city)
         setWeather(forecast.weather_status)
         setTemp(forecast.temp_actual)

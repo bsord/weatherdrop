@@ -1,92 +1,144 @@
-import { GiphyFetch } from '@giphy/js-fetch-api'
-
-// Init Giphy SDK
-const giphy = new GiphyFetch(process.env.GIPHY_KEY)
-
 export default function handler(req, res) {
-  // Get weather id, and grab related search keyword
-  let { weatherId } = req.query
-  const searchTerm = getFunnySearchTerm(weatherId)
-
-  // Search giphy for gif based on weather keyword
-  return giphy.search( searchTerm, { sort: 'relevant', lang: 'en', limit: 2, type: 'gifs' })
-    .then(response => {
-      // select random gif from response
-      let rndInt = Math.floor(Math.random() * response.data.length)
-      let gifUrl = response.data[rndInt].images.original.url
-      // Respond with selected gif url
-      res.status(200).json({ gif: gifUrl })
-    })
+  let { weatherId, temp } = req.query
+  let gifUrl = getRandomGif(weatherId, temp)
+  return res.status(200).json({ gif: gifUrl })
 }
 
-function getFunnySearchTerm(weatherId) {
-  const funnySearchTerms = searchTermMappings[weatherId]
-  const rndInt = Math.floor(Math.random() * funnySearchTerms.length) 
-  const funnyTerm = funnySearchTerms[rndInt]
-  return funnyTerm
+function getRandomGif(weatherId, temp) {
+  let gifUrl;
+  if(temp <= 25){
+      gifUrl = cold[Math.floor(Math.random() * cold.length)];
+  }else if(temp >= 95){
+    gifUrl = hot[Math.floor(Math.random() * hot.length)];
+  }else {
+    switch(weatherId) {
+      case weatherId >= 200 && weatherId <= 235:
+        gifUrl = thunder[Math.floor(Math.random() * thunder.length)];
+        break;
+      case weatherId >= 300 && weatherId <= 325:
+        gifUrl = drizzle[Math.floor(Math.random() * drizzle.length)];
+        break;
+      case weatherId >= 500 && weatherId <= 535:
+        gifUrl = rain[Math.floor(Math.random() * rain.length)];
+        break;
+      case weatherId >= 600 && weatherId <= 625:
+        gifUrl = snow[Math.floor(Math.random() * snow.length)];
+        break;
+      case weatherId >= 700 && weatherId <= 799:
+        gifUrl = atmosphere[Math.floor(Math.random() * atmosphere.length)];
+        break;
+      case weatherId == 800:
+        gifUrl = clear[Math.floor(Math.random() * clear.length)];
+        break;
+      case weatherId >= 801 && weatherId <= 804:
+        gifUrl = clouds[Math.floor(Math.random() * clouds.length)];
+        break;
+      default:
+        gifUrl = clear[Math.floor(Math.random() * clear.length)];
+    }
+  }
+  return gifUrl;
 }
 
-const searchTermMappings = {
-  //thunderstorms
-  '200' : ['thunderstorm with light rain'], //thunderstorm with light rain
-  '201' : ['thunderstorm with rain'], //thunderstorm with rain
-  '202' : ['thunderstorm with heavy rain'], //thunderstorm with heavy rain
-  '210' : ['light thunderstorm'], //light thunderstorm
-  '211' : ['thunderstorm'], //thunderstorm
-  '212' : ['heavy thunderstorm'], //heavy thunderstorm
-  '221' : ['ragged thunderstorm'], //ragged thunderstorm
-  '230' : ['thunderstorm with light drizzle'], //thunderstorm with light drizzle
-  '231' : ['thunderstorm with drizzle'], //thunderstorm with drizzle
-  '232' : ['thunderstorm with heavy drizzle'], //thunderstorm with heavy drizzle
-  //drizzle
-  '300' : ['light intensity drizzle'], //light intensity drizzle
-  '301' : ['drizzle'], //drizzle
-  '302' : ['heavy intensity drizzle'], //heavy intensity drizzle
-  '310' : ['light intensity drizzle rain'], //light intensity drizzle rain
-  '311' : ['drizzle rain'], //drizzle rain
-  '312' : ['heavy intensity drizzle rain'], //heavy intensity drizzle rain
-  '313' : ['shower rain and drizzle'], //shower rain and drizzle
-  '314' : ['heavy shower rain and drizzle'], //heavy shower rain and drizzle
-  '321' : ['shower drizzle'], //shower drizzle
-  //rain
-  '500' : ['light rain'], //light rain
-  '501' : ['moderate rain'], //	moderate rain
-  '502' : ['heavy intensity rain'], //heavy intensity rain
-  '503' : ['very heavy rain'], //very heavy rain
-  '504' : ['extreme rain'], //extreme rain
-  '511' : ['freezing rain'], //freezing rain
-  '520' : ['light intensity shower rain'], //light intensity shower rain
-  '521' : ['shower rain'], //shower rain
-  '522' : ['heavy intensity shower rain'], //heavy intensity shower rain
-  '531' : ['ragged shower rain'], //ragged shower rain
-  //snow
-  '600' : ['light snow'], //light snow
-  '601' : ['Snow'], //Snow
-  '602' : ['Heavy snow'], //Heavy snow
-  '611' : ['Sleet'], //Sleet
-  '612' : ['Light shower sleet'], //Light shower sleet
-  '613' : ['Shower sleet'], //Shower sleet
-  '615' : ['Light rain and snow'], //Light rain and snow
-  '616' : ['Rain and snow'], //Rain and snow
-  '620' : ['Light shower snow'], //Light shower snow
-  '621' : ['Shower snow'], //Shower snow
-  '622' : ['Heavy shower snow'], //Heavy shower snow
-  //atmosphere
-  '701' : ['mist'], //mist
-  '711' : ['Smoke'], //	Smoke
-  '721' : ['Haze'], //Haze
-  '731' : ['sand dust whirls'], //sand/ dust whirls
-  '741' : ['fog'], //fog
-  '751' : ['sand'], //sand
-  '761' : ['dust'], //dust
-  '762' : ['volcanic ash'], //volcanic ash
-  '771' : ['squalls'], //squalls
-  '781' : ['tornado'], //tornado
-  //Clear
-  '800' : ['clear sky'], //clear sky
-  //Clouds
-  '801' : ['few clouds'], //few clouds: 11-25%
-  '802' : ['scattered clouds'], //scattered clouds: 25-50%
-  '803' : ['broken clouds'], //broken clouds: 51-84%
-  '804' : ['overcast clouds'], //overcast clouds: 85-100%
-}
+let thunder = [
+  "https://gph.is/2M9Thky",
+  "http://gph.is/1sFFac3",
+  "http://gph.is/1Sw1WsQ",
+  "https://media.giphy.com/media/l2Je1XYouqmuPhdi8/giphy.gif",
+  "http://gph.is/1NGYlK9"
+]
+
+let drizzle = [
+  "https://media.giphy.com/media/xT5LMAT8WK4InFirXG/giphy.gif",
+  "http://gph.is/195j1bB",
+  "http://gph.is/1SxY8vf",
+  "http://gph.is/1NGYlK9"
+]
+
+let rain = [
+  "http://gph.is/2fxLUVg",
+  "http://gph.is/29KQpZt",
+  "https://media.giphy.com/media/l2Je1XYouqmuPhdi8/giphy.gif",
+  "http://gph.is/1NGYlK9",
+  "http://gph.is/1IFdrby",
+  "http://gph.is/2yqdrCC",
+  "https://media.giphy.com/media/u0l83hl7HZYKBNeuGB/giphy.gif"
+]
+
+let snow = [
+  "https://media.giphy.com/media/l2JIaYp6P3WT5Ybu0/giphy.gif",
+  "https://media.giphy.com/media/SAC0wTRQYO2Y0/giphy.gif",
+  "https://media.giphy.com/media/hkFgpYE8CRqog/giphy.gif",
+  "https://media.giphy.com/media/5YDYrKUWKYeVW/giphy.gif",
+  "https://media.giphy.com/media/10N782ExqDjCLK/giphy.gif",
+  "https://media.giphy.com/media/JWegbsAWQS1YA/giphy.gif",
+  "https://media.giphy.com/media/ugeAEY9a4dpYY/giphy.gif",
+  "https://media.giphy.com/media/g2YvIlpgTMlck/giphy.gif",
+  "https://media.giphy.com/media/Av0z9tdsBvFPLnnHz3/giphy.gif",
+  "https://media.giphy.com/media/VRolEcq3Z4axa/giphy.gif",
+  "https://media.giphy.com/media/10PrLKmZzVcK9a/giphy.gif",
+  "http://gph.is/1cp2gTR"
+]
+
+let atmosphere = [
+  "https://media.giphy.com/media/J9xKOmBdZlasbXzBjA/giphy.gif",
+  "https://media.giphy.com/media/l0HlMURBbyUqF0XQI/giphy.gif"
+]
+
+let clear = [
+  "https://media.giphy.com/media/Tj3gqingvdFZTokphI/giphy.gif",
+  "https://media.giphy.com/media/xTEvYwzGarSU4J4FiM/giphy.gif",
+  "https://media.giphy.com/media/LQthkp9wNfaMtmwG98/giphy.gif",
+  "https://media.giphy.com/media/KA7zbi33B3a9i/giphy.gif",
+  "https://media.giphy.com/media/JpGNLpC9jUdwxTrSEm/giphy.gif",
+  "https://media.giphy.com/media/l08SqWKuJlyeLkYfLE/giphy.gif",
+  "https://media.giphy.com/media/l08SqWKuJlyeLkYfLE/giphy.gif",
+  "https://media.giphy.com/media/LnccQ4gwbYdd4O5PLR/giphy.gif",
+  "https://media.giphy.com/media/5UqNjxKXGxDOhtR0hP/giphy.gif",
+  "https://media.giphy.com/media/3orieMqnFY9nZjn9fy/giphy.gif",
+  "http://gph.is/16CST7b",
+  "https://media.giphy.com/media/ihWcaj6R061wc/giphy.gif",
+  "https://media.giphy.com/media/xUPJUETissh9XI618s/giphy.gif",
+  "https://media.giphy.com/media/mDSGaOdQxzdseSPdAi/giphy.gif",
+  "https://media.giphy.com/media/JRgjhKV4UvgCpcue0q/giphy.gif",
+  "https://media.giphy.com/media/3ornjQskKPGbIHmXZe/giphy.gif"
+]
+
+let clouds = [
+  "https://media.giphy.com/media/rrFcUcN3MFmta/giphy.gif",
+  "https://media.giphy.com/media/26BGDQxDCZDFHW5Ne/giphy.gif",
+  "https://media.giphy.com/media/HknSLLEbzZCoM/giphy.gif",
+  "https://media.giphy.com/media/l0HlQdk8kI9KIOjBe/giphy.gif",
+  "https://media.giphy.com/media/3orieMAp8v8mtnVvJm/giphy.gif",
+  "https://media.giphy.com/media/McZdU5M5jpkmk/giphy.gif"
+]
+
+let cold = [
+  "https://media.giphy.com/media/nVGyjauCDpAFq/giphy.gif",
+  "https://media.giphy.com/media/KFUx0Rtz7p0HTzbJ7x/giphy.gif",
+  "https://media.giphy.com/media/KaW6fNYZf6eSk/giphy.gif",
+  "https://media.giphy.com/media/l0NwI6LbXx4sWQCmk/giphy.gif",
+  "https://media.giphy.com/media/xUOwGoV4fmBd0fiyGI/giphy.gif",
+  "https://media.giphy.com/media/l0NwtuI3FrBQ7xk4g/giphy.gif",
+  "https://media.giphy.com/media/4L69OKSHdCx7a/giphy.gif",
+  "https://media.giphy.com/media/3o6fDMaNGxz2rblFQs/giphy.gif",
+  "https://media.giphy.com/media/xTeV7qibUsOYA3mmYw/giphy.gif",
+  "https://media.giphy.com/media/3o7ZeCHGCq8vJgj4GY/giphy.gif",
+  "http://gph.is/2pyZawE",
+  "https://media.giphy.com/media/s4Bi420mMDRBK/giphy.gif",
+  "http://gph.is/1U9IaFl"
+]
+
+let hot = [
+  "https://media.giphy.com/media/l2Je4PGbVcHDsQhnG/giphy.gif",
+  "https://media.giphy.com/media/LjpIl7WfncQgw/giphy.gif",
+  "https://media.giphy.com/media/LgULLE6V45LfG/giphy.gif",
+  "https://media.giphy.com/media/xT5LMAUnrvWDGvwLQY/giphy.gif",
+  "https://media.giphy.com/media/Y4h6SX80viZIKu76d2/giphy.gif",
+  "https://media.giphy.com/media/nrXif9YExO9EI/giphy.gif",
+  "https://media.giphy.com/media/hkik4ac9sSqaY/giphy.gif",
+  "http://gph.is/1qGS9IX",
+  "https://media.giphy.com/media/11oRLY4FRk2s36/giphy.gif",
+  "https://media.giphy.com/media/l0HlMURBbyUqF0XQI/giphy.gif",
+  "http://gph.is/2h8wI3B"
+]
