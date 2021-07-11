@@ -71,7 +71,7 @@ export default function Location() {
           {
               weather && weatherGif &&
               <div className={styles.logo}>
-                <img src={weatherGif} alt={weather + "-gif"} width="50%" height="50%"/>
+                <img src={weatherGif} alt={weather + "-gif"} width="75%" height="75%"/>
               </div>
           }
           {
