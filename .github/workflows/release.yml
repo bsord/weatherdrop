@@ -24,7 +24,7 @@ jobs:
         id: update-version
         run: |
           # Bump version
-          npm version patch
+          npm version --no-commit-hooks patch
           # Get new bumped version
           PACKAGE_VERSION=$(grep version package.json | sed 's/.*"version": "\(.*\)".*/\1/')
           # Update chart version
