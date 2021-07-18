@@ -22,6 +22,7 @@ ingress:
   tls: []
 nameOverride: ""
 nodeSelector: {}
+podAnnotations: {}
 podSecurityContext: {}
 replicaCount: 1
 resources:
