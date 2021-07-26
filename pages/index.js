@@ -45,7 +45,7 @@ export default function Home() {
         <Link href="/">
           <a>WeatherDrop.io ©
             {' '}
-            {new Date().getFullYear()}
+            {new Date().getFullYear()} - v{process.env.NEXT_PUBLIC_APP_VERSION}
           </a>
         </Link>
       </footer>
