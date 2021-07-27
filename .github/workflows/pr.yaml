@@ -87,23 +87,18 @@ jobs:
         with:
           version: v3.4.0
 
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      - name: Set up chart-testing
-        uses: helm/chart-testing-action@main
-
       - name: Update chart image tag
         run: |
           sed -r -i 's/(appVersion:[^*])([[:alnum:].]*)/\1${{ steps.vars.outputs.sha_short }}/g' ./chart/Chart.yaml
 
-      - name: Run chart-testing (lint)
-        run: ct lint --chart-dirs chart
+      - name: Lint Helm chart
+        run: helm lint ./chart
 
-      - name: Create kind cluster
+      - name: Create Kind cluster
         uses: helm/kind-action@v1.2.0
 
-      - name: Run chart-testing (install)
-        run: ct install --chart-dirs chart
+      - name: Install and Test chart
+        run: |
+          helm install test-release ./chart 
+          helm test test-release
   
