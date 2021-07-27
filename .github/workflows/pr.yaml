@@ -76,8 +76,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       - name: Define sha_short
         id: vars
@@ -96,7 +94,6 @@ jobs:
         uses: helm/chart-testing-action@v2.1.0
 
       - name: Update chart image tag
-        if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
         run: |
           sed -r -i 's/(appVersion:[^*])([[:alnum:].]*)/\1${{ steps.vars.outputs.sha_short }}/g' ./chart/Chart.yaml
 
