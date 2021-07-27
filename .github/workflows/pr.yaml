@@ -52,6 +52,7 @@ jobs:
 
   chart-test:
     name: Helm Chart
+    needs: docker-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
