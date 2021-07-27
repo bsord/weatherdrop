@@ -52,22 +52,23 @@ jobs:
     needs: docker-build
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
-      - name: Define sha_short
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ github.repository }}:${{ steps.vars.outputs.sha_short }}'
+          scan-type: 'fs'
+          ignore-unfixed: true
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
+          severity: 'CRITICAL'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
 
   chart-test:
     name: Helm Chart
@@ -98,13 +99,11 @@ jobs:
           sed -r -i 's/(appVersion:[^*])([[:alnum:].]*)/\1${{ steps.vars.outputs.sha_short }}/g' ./chart/Chart.yaml
 
       - name: Run chart-testing (lint)
-        run: ct lint
-        env:
-          CT_CHART_DIRS: chart
+        run: ct lint --chart-dirs chart
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
 
       - name: Run chart-testing (install)
-        run: ct install
+        run: ct install --chart-dirs chart
   
