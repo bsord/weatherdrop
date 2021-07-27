@@ -61,3 +61,18 @@ Create the name of the service account to use
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+{{- define "weatherdrop.createSecret" -}}
+{{- if (not .Values.existingSecret) }}
+    {{- true -}}
+{{- else -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "weatherdrop.secretName" -}}
+    {{- if .Values.existingSecret -}}
+        {{- printf "%s" .Values.existingSecret -}}
+    {{- else -}}
+        {{- printf "%s" (include "weatherdrop.fullname" .) -}}
+    {{- end -}}
+{{- end -}}

@@ -4,7 +4,9 @@ image:
   pullPolicy: Always
   repository: bsord/weatherdrop
 imagePullSecrets: []
-secretName: weatherdropsecret
+#existingSecret:
+giphyKey: "" #Used if existingSecret not defined
+openWeatherApiKey: "" #Used if existingSecret not defined
 autoscaling:
   enabled: false
   minReplicas: 2
