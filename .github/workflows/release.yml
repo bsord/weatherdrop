@@ -56,5 +56,15 @@ jobs:
           registry-url: ${{ secrets.CM_REPO_URL }} 
           force: true
           chart-folder: chart
+
+      - name: Push Helm chart
+        uses: bsord/helm-push@develop
+        with:
+          useOCIRegistry: true
+          access-token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+          username: bsord
+          registry-url:  https://ghcr.io/${{ github.repository }}
+          force: true
+          chart-folder: chart
       
 
