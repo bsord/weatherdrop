@@ -50,6 +50,14 @@ jobs:
           tags: "latest,${{ steps.update-version.outputs.version }}"
 
       - name: Push Helm chart
+        uses: bsord/helm-push@v2
+        with:
+          access-token: ${{ secrets.CM_API_KEY }}
+          repository-url: ${{ secrets.CM_REPO_URL }} 
+          force: true
+          chart-folder: chart
+
+      - name: Push Helm chart
         uses: bsord/helm-push@develop
         with:
           useOCIRegistry: true
@@ -57,6 +65,5 @@ jobs:
           registry-url:  https://ghcr.io/${{ github.repository }}
           force: true
           chart-folder: chart
-          
       
 
