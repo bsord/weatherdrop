@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 0.5.14
+appVersion: 0.5.15
 description: Your source for daily meme based weather forecasts
 name: weatherdrop
 type: application
-version: 0.5.14
+version: 0.5.15
