@@ -61,7 +61,7 @@ jobs:
         uses: bsord/helm-push@develop
         with:
           useOCIRegistry: true
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
           username: bsord
           registry-url:  https://ghcr.io/${{ github.repository }}
           force: true
