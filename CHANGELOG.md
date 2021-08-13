@@ -1,53 +1,46 @@
-## [0.4.1](https://github.com/bsord/weatherdrop/compare/0.4.0...0.4.1) (2021-07-06)
+## [0.5.5](https://github.com/bsord/weatherdrop/compare/0.5.4...0.5.5) (2021-07-11)
 
 
 ### Bug Fixes
 
-* **workflow:** Ensure builds are succesful before merge and release ([1663654](https://github.com/bsord/weatherdrop/commit/1663654d9e7c2c559d6c4e86fbfd47b9f66a1915))
+* Remove un-used giphy env var references ([2e81a0d](https://github.com/bsord/weatherdrop/commit/2e81a0d64b5e02d1d8b449dec400b4fe07d13793))
 
 
 
-# [0.4.0](https://github.com/bsord/weatherdrop/compare/0.3.1...0.4.0) (2021-07-06)
-
-
-### Features
-
-* **language:** Change codebase to javascript ([644ea12](https://github.com/bsord/weatherdrop/commit/644ea129ca617bae75863e92ac54b471be825855))
-
-
-
-## [0.3.1](https://github.com/bsord/weatherdrop/compare/0.3.0...0.3.1) (2021-07-06)
+## [0.5.4](https://github.com/bsord/weatherdrop/compare/0.5.3...0.5.4) (2021-07-08)
 
 
 ### Bug Fixes
 
-* re-add api query ([86b4e19](https://github.com/bsord/weatherdrop/commit/86b4e196db0dbf4605dee0df0d302ff0a2523c8b))
+* Remove un-used random page ([d84fd7c](https://github.com/bsord/weatherdrop/commit/d84fd7c53ac4d44bd47be3da81e810342972bfda))
 
 
 
-# [0.3.0](https://github.com/bsord/weatherdrop/compare/0.2.1...0.3.0) (2021-07-06)
-
-
-### Bug Fixes
-
-* Use type for error responses ([b40a694](https://github.com/bsord/weatherdrop/commit/b40a694cf0fec444b7bfd5f464d265bdc13df109))
-
-
-### Features
-
-* **helm:** Update deployment to use secrets ([ee23f64](https://github.com/bsord/weatherdrop/commit/ee23f642cdafb223232166939c0c65577ddfb0ef))
-
-
-
-## [0.2.1](https://github.com/bsord/weatherdrop/compare/0.2.0...0.2.1) (2021-07-06)
+## [0.5.3](https://github.com/bsord/weatherdrop/compare/0.5.2...0.5.3) (2021-07-08)
 
 
 ### Bug Fixes
 
-* gifUrl type reference ([d8c608f](https://github.com/bsord/weatherdrop/commit/d8c608fd013614ff93c1e7c2fc600adb97da8296))
-* Update state hooks to use int and str ([e62768a](https://github.com/bsord/weatherdrop/commit/e62768a16db515b10380ee23a70d3a7e768a5c48))
-* Use proper types for gifUrl props in random ([887b2b6](https://github.com/bsord/weatherdrop/commit/887b2b6048f873fd517d9579233c6810a4cbd80b))
-* Use types for forecast api method ([ab10ec5](https://github.com/bsord/weatherdrop/commit/ab10ec5c2e93cf07cec86cf0a1b87fa347248aa5))
+* crossOrigin warnings due to boolean when string expected ([942de68](https://github.com/bsord/weatherdrop/commit/942de683e05f4882d05dc0f9a85cef8020f8444c))
+
+
+
+## [0.5.2](https://github.com/bsord/weatherdrop/compare/0.5.1...0.5.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* **apis:** simplify api endpoint code, remove async, and add comments ([a98a369](https://github.com/bsord/weatherdrop/commit/a98a3696254776c6aff5b0c9152e029d9008bce1))
+
+
+
+## [0.5.1](https://github.com/bsord/weatherdrop/compare/0.5.0...0.5.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* rework client side api calls ([018ea0a](https://github.com/bsord/weatherdrop/commit/018ea0a326a0e6978ef915a838b7ddfeeaeb2464))
+* Use larger width for gif display ([de9a4a9](https://github.com/bsord/weatherdrop/commit/de9a4a91fa0368238dd575ada7b08581f9ee8043))
 
 
 

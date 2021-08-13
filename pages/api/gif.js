@@ -5,14 +5,13 @@ export default function handler(req, res) {
 }
 
 function getRandomGif(weatherId, temp) {
-  console.log(weatherId)
   let gifUrl;
   if(temp <= 25){
       gifUrl = cold[Math.floor(Math.random() * cold.length)];
   }else if(temp >= 95){
     gifUrl = hot[Math.floor(Math.random() * hot.length)];
   }else {
-    switch(weatherId) {
+    switch(true) {
       case weatherId >= 200 && weatherId <= 235:
         gifUrl = thunder[Math.floor(Math.random() * thunder.length)];
         break;
@@ -35,7 +34,6 @@ function getRandomGif(weatherId, temp) {
         gifUrl = clouds[Math.floor(Math.random() * clouds.length)];
         break;
       default:
-        console.log("Somehow the weather ID was not caught: " + weatherId)
         gifUrl = clear[Math.floor(Math.random() * clear.length)];
     }
   }

@@ -11,6 +11,10 @@ spec:
       {{- include "weatherdrop.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       labels:
         {{- include "weatherdrop.selectorLabels" . | nindent 8 }}
     spec:
@@ -43,12 +47,12 @@ spec:
             - name: "GIPHY_KEY"
               valueFrom:
                 secretKeyRef: 
-                  name: {{ .Values.secretName }}
+                  name: {{ include "weatherdrop.secretName" . }}
                   key: giphyKey
             - name: "OPEN_WEATHER_API_KEY"
               valueFrom:
                 secretKeyRef: 
-                  name: {{ .Values.secretName }}
+                  name: {{ include "weatherdrop.secretName" . }}
                   key: openWeatherApiKey
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
