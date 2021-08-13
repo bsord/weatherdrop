@@ -31,7 +31,8 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: "/"
             backend:
               service:
                 name: {{ $fullName }}
