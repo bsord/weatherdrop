@@ -1,4 +1,4 @@
-name: "Release"
+name: Create Release(s)
 # SECRETS NEEDED:
 # DOCKER_USERNAME - Container Registry Username (github or dockerhub)
 # DOCKER_ACCESS_TOKEN - Container registry Personal access token with push priveledges
@@ -8,15 +8,15 @@ name: "Release"
 on:
   push:
     branches:
-      - "main"
+      - 'main'
 
 jobs:
   release:
-    name: "Release"
+    name: 'Release'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: "actions/checkout@v2"
+        uses: 'actions/checkout@v2'
         with:
           ref: ${{ github.ref }}
 
@@ -35,9 +35,9 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v7.2.1
         with:
-          message: "chore(version): Bump to: ${{ steps.update-version.outputs.version }}"
-          tag: "${{ steps.get-version.outputs.version }}"
-          push: "origin main --force"
+          message: 'chore(version): Bump to: ${{ steps.update-version.outputs.version }}'
+          tag: '${{ steps.get-version.outputs.version }}'
+          push: 'origin main --force'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -47,13 +47,13 @@ jobs:
           name: ${{ github.repository }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          tags: "latest,${{ steps.update-version.outputs.version }}"
+          tags: 'latest,${{ steps.update-version.outputs.version }}'
 
       - name: Push Helm chart
         uses: bsord/helm-push@v4
         with:
           access-token: ${{ secrets.CM_API_KEY }}
-          registry-url: ${{ secrets.CM_REPO_URL }} 
+          registry-url: ${{ secrets.CM_REPO_URL }}
           force: true
           chart-folder: chart
 
@@ -63,8 +63,6 @@ jobs:
           useOCIRegistry: true
           access-token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
           username: bsord
-          registry-url:  https://ghcr.io/${{ github.repository }}
+          registry-url: https://ghcr.io/${{ github.repository }}
           force: true
           chart-folder: chart
-      
-
