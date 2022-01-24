@@ -18,6 +18,9 @@ spec:
       labels:
         {{- include "weatherdrop.selectorLabels" . | nindent 8 }}
     spec:
+    {{- if .Values.topologySpreadConstraints }}
+      topologySpreadConstraints: {{ toYaml .Values.topologySpreadConstraints | nindent 8 }}
+    {{- end }}
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
