@@ -63,6 +63,6 @@ jobs:
           useOCIRegistry: true
           access-token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
           username: bsord
-          registry-url: https://ghcr.io/${{ github.repository }}
+          registry-url: oci://ghcr.io/${{ github.repository }}
           force: true
           chart-folder: chart
