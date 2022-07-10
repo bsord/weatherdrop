@@ -50,7 +50,7 @@ jobs:
           tags: 'latest,${{ steps.update-version.outputs.version }}'
 
       - name: Push Helm chart
-        uses: bsord/helm-push@v4.0.6
+        uses: bsord/helm-push@v4.0.7
         with:
           access-token: ${{ secrets.CM_API_KEY }}
           registry-url: ${{ secrets.CM_REPO_URL }}
@@ -58,7 +58,7 @@ jobs:
           chart-folder: chart
 
       - name: Push Helm chart
-        uses: bsord/helm-push@v4.0.6
+        uses: bsord/helm-push@v4.0.7
         with:
           useOCIRegistry: true
           access-token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
